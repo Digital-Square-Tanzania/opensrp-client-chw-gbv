@@ -1,4 +1,4 @@
 
-# opensrp-client-chw-sbc
-OpenSRP client SBC module library
+# opensrp-client-chw-gbv
+OpenSRP client GBV module library
 
