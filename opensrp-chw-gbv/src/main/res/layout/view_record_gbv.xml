@@ -24,7 +24,7 @@
             android:weightSum="2">
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/textview_record_sbc"
+                android:id="@+id/textview_record_gbv"
                 style="@style/CustomFontTextViewStyle.ListView.Normal.MultipleLines"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:paddingTop="10dp"
                 android:paddingRight="30dp"
                 android:paddingBottom="10dp"
-                android:text="@string/record_sbc"
+                android:text="@string/record_gbv"
                 android:textColor="@color/white" />
 
         </LinearLayout>

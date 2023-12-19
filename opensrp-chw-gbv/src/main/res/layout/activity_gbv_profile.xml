@@ -42,7 +42,7 @@
                         android:gravity="center_vertical|start"
                         android:paddingStart="0dp"
                         android:paddingEnd="0dp"
-                        android:text="@string/return_to_previous_sbc_clients_page"
+                        android:text="@string/return_to_previous_gbv_clients_page"
                         android:textColor="@color/customAppThemeBlue"
                         android:textSize="17sp" />
                 </androidx.appcompat.widget.Toolbar>
@@ -188,10 +188,10 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/record_visit_sbc"
-                layout="@layout/view_record_sbc" />
+                android:id="@+id/record_visit_gbv"
+                layout="@layout/view_record_gbv" />
 
-            <include layout="@layout/content_sbc_profile" />
+            <include layout="@layout/content_gbv_profile" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

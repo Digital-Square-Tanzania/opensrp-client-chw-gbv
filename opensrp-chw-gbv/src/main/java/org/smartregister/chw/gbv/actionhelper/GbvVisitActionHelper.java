@@ -14,7 +14,7 @@ import timber.log.Timber;
  * Designed to set default methods for the SBC Action Helper
  * This object must remain inert to the Home Visit action. Its designed primarily for extension by simple visit actions
  */
-public abstract class SbcVisitActionHelper implements BaseGbvVisitAction.SbcVisitActionHelper {
+public abstract class GbvVisitActionHelper implements BaseGbvVisitAction.SbcVisitActionHelper {
     protected Context context;
 
     @Override

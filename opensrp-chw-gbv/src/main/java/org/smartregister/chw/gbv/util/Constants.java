@@ -35,6 +35,7 @@ public interface Constants {
         String SBC_HIV_STATUS = "sbc_hiv_status";
 
         String SBC_ACTIVITY = "sbc_activity";
+        String GBV_VISIT_TYPE = "gbv_visit_type";
 
         String SBC_HEALTH_EDUCATION = "sbc_health_education";
 

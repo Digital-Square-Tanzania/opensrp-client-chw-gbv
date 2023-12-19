@@ -17,8 +17,8 @@ public class GbvMemberProfileActivity extends BaseGbvProfileActivity {
     }
 
     @Override
-    public void recordSbc(MemberObject memberObject) {
-        GbvVisitActivity.startMe(this, memberObject.getBaseEntityId(), false);
+    public void recordGbv(MemberObject memberObject) {
+        GbvHfVisitActivity.startMe(this, memberObject.getBaseEntityId(), false);
     }
 
     @Override

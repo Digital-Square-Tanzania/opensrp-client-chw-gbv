@@ -37,19 +37,19 @@ public class BaseGbvProfilePresenterTest {
 
     @Test
     public void malariaTestDatePeriodIsLessThanSeven() {
-        profilePresenter.recordSbcButton("");
+        profilePresenter.recordGbvButton("");
         verify(view).hideView();
     }
 
     @Test
     public void malariaTestDatePeriodGreaterThanTen() {
-        profilePresenter.recordSbcButton("OVERDUE");
+        profilePresenter.recordGbvButton("OVERDUE");
         verify(view).setOverDueColor();
     }
 
     @Test
     public void malariaTestDatePeriodIsMoreThanFourteen() {
-        profilePresenter.recordSbcButton("EXPIRED");
+        profilePresenter.recordGbvButton("EXPIRED");
         verify(view).hideView();
     }
 

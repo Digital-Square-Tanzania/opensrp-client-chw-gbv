@@ -48,7 +48,7 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
     protected TextView textViewGender;
     protected TextView textViewLocation;
     protected TextView textViewUniqueID;
-    protected TextView textViewRecordSbc;
+    protected TextView textViewRecordGbv;
     protected View view_most_due_overdue_row;
     protected RelativeLayout rlLastVisit;
     protected RelativeLayout visitStatus;
@@ -71,7 +71,7 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
 
     @Override
     protected void onCreation() {
-        setContentView(R.layout.activity_sbc_profile);
+        setContentView(R.layout.activity_gbv_profile);
         Toolbar toolbar = findViewById(R.id.collapsing_toolbar);
         setSupportActionBar(toolbar);
         String baseEntityId = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID);
@@ -103,12 +103,12 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
         recordVisits = findViewById(R.id.record_visits);
         progressBar = findViewById(R.id.progress_bar);
         textViewVisitDoneEdit = findViewById(R.id.textview_edit);
-        textViewRecordSbc = findViewById(R.id.textview_record_sbc);
+        textViewRecordGbv = findViewById(R.id.textview_record_gbv);
         textViewUndo = findViewById(R.id.textview_undo);
         imageView = findViewById(R.id.imageview_profile);
         textViewVisitDoneEdit.setOnClickListener(this);
         rlLastVisit.setOnClickListener(this);
-        textViewRecordSbc.setOnClickListener(this);
+        textViewRecordGbv.setOnClickListener(this);
         textViewUndo.setOnClickListener(this);
 
         imageRenderHelper = new ImageRenderHelper(this);
@@ -134,8 +134,8 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
             onBackPressed();
         } else if (id == R.id.rlLastVisit) {
             this.openMedicalHistory();
-        } else if (id == R.id.textview_record_sbc) {
-            this.recordSbc(memberObject);
+        } else if (id == R.id.textview_record_gbv) {
+            this.recordGbv(memberObject);
         }
     }
 
@@ -158,7 +158,7 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
 
     @Override
     public void hideView() {
-        textViewRecordSbc.setVisibility(View.GONE);
+        textViewRecordGbv.setVisibility(View.GONE);
     }
 
     @SuppressLint("DefaultLocale")
@@ -172,7 +172,7 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
 
     @Override
     public void setOverDueColor() {
-        textViewRecordSbc.setBackground(getResources().getDrawable(R.drawable.record_btn_selector_overdue));
+        textViewRecordGbv.setBackground(getResources().getDrawable(R.drawable.record_btn_selector_overdue));
     }
 
     @Override
@@ -208,7 +208,7 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
     }
 
     @Override
-    public void recordSbc(MemberObject memberObject) {
+    public void recordGbv(MemberObject memberObject) {
         //implement
     }
 

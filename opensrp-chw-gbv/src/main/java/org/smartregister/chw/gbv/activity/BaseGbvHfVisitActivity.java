@@ -28,7 +28,7 @@ import org.smartregister.chw.gbv.adapter.BaseGbvVisitAdapter;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.dao.GbvDao;
 import org.smartregister.chw.gbv.domain.MemberObject;
-import org.smartregister.chw.gbv.interactor.BaseGbvVisitInteractor;
+import org.smartregister.chw.gbv.interactor.BaseGbvHfVisitInteractor;
 import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.presenter.BaseGbvVisitPresenter;
 import org.smartregister.chw.gbv.util.Constants;
@@ -40,9 +40,9 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class BaseGbvVisitActivity extends SecuredActivity implements BaseGbvVisitContract.View, View.OnClickListener {
+public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVisitContract.View, View.OnClickListener {
 
-    private static final String TAG = BaseGbvVisitActivity.class.getCanonicalName();
+    private static final String TAG = BaseGbvHfVisitActivity.class.getCanonicalName();
     protected Map<String, BaseGbvVisitAction> actionList = new LinkedHashMap<>();
     protected BaseGbvVisitContract.Presenter presenter;
     protected MemberObject memberObject;
@@ -57,7 +57,7 @@ public class BaseGbvVisitActivity extends SecuredActivity implements BaseGbvVisi
     protected String confirmCloseMessage;
 
     public static void startMe(Activity activity, String baseEntityID, Boolean isEditMode) {
-        Intent intent = new Intent(activity, BaseGbvVisitActivity.class);
+        Intent intent = new Intent(activity, BaseGbvHfVisitActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityID);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, isEditMode);
         activity.startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
@@ -114,18 +114,19 @@ public class BaseGbvVisitActivity extends SecuredActivity implements BaseGbvVisi
     }
 
     protected void registerPresenter() {
-        presenter = new BaseGbvVisitPresenter(memberObject, this, new BaseGbvVisitInteractor());
+        presenter = new BaseGbvVisitPresenter(memberObject, this, new BaseGbvHfVisitInteractor());
     }
 
     @Override
     public void initializeActions(LinkedHashMap<String, BaseGbvVisitAction> map) {
+        actionList.clear();
         //Necessary evil to rearrange the actions according to a specific arrangement
         if (map.containsKey(getString(R.string.sbc_visit_action_title_hiv_status))) {
             actionList.put(getString(R.string.sbc_visit_action_title_hiv_status), map.get(getString(R.string.sbc_visit_action_title_hiv_status)));
         }
 
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_sbc_activity))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_sbc_activity), map.get(getString(R.string.sbc_visit_action_title_sbc_activity)));
+        if (map.containsKey(getString(R.string.gbv_visit_type_action_title))) {
+            actionList.put(getString(R.string.gbv_visit_type_action_title), map.get(getString(R.string.gbv_visit_type_action_title)));
         }
 
         if (map.containsKey(getString(R.string.sbc_visit_action_title_services_survey))) {
@@ -368,7 +369,7 @@ public class BaseGbvVisitActivity extends SecuredActivity implements BaseGbvVisi
 
     @Override
     public void onBackPressed() {
-        displayExitDialog(BaseGbvVisitActivity.this::finish);
+        displayExitDialog(BaseGbvHfVisitActivity.this::finish);
     }
 
     protected void displayExitDialog(final Runnable onConfirm) {

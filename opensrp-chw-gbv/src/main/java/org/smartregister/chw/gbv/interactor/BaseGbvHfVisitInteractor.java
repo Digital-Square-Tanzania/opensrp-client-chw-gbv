@@ -12,10 +12,8 @@ import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 import org.smartregister.chw.gbv.GbvLibrary;
 import org.smartregister.chw.gbv.R;
-import org.smartregister.chw.gbv.actionhelper.ArtAdherenceCounsellingActionHelper;
-import org.smartregister.chw.gbv.actionhelper.CommentsActionHelper;
-import org.smartregister.chw.gbv.actionhelper.SbcActivityActionHelper;
-import org.smartregister.chw.gbv.actionhelper.SbcVisitActionHelper;
+import org.smartregister.chw.gbv.actionhelper.GbvHfVisitTypeActionHelper;
+import org.smartregister.chw.gbv.actionhelper.GbvVisitActionHelper;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.dao.GbvDao;
 import org.smartregister.chw.gbv.domain.MemberObject;
@@ -43,7 +41,7 @@ import java.util.Map;
 import timber.log.Timber;
 
 
-public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
+public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor {
 
     private final GbvLibrary gbvLibrary;
     private final LinkedHashMap<String, BaseGbvVisitAction> actionList;
@@ -54,21 +52,23 @@ public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
 
     private BaseGbvVisitContract.InteractorCallBack callBack;
 
+    private MemberObject memberObject;
+
     @VisibleForTesting
-    public BaseGbvVisitInteractor(AppExecutors appExecutors, GbvLibrary GbvLibrary, ECSyncHelper syncHelper) {
+    public BaseGbvHfVisitInteractor(AppExecutors appExecutors, GbvLibrary GbvLibrary, ECSyncHelper syncHelper) {
         this.appExecutors = appExecutors;
         this.gbvLibrary = GbvLibrary;
         this.syncHelper = syncHelper;
         this.actionList = new LinkedHashMap<>();
     }
 
-    public BaseGbvVisitInteractor() {
+    public BaseGbvHfVisitInteractor() {
         this(new AppExecutors(), GbvLibrary.getInstance(), GbvLibrary.getInstance().getEcSyncHelper());
     }
 
     @Override
     public void reloadMemberDetails(String memberID, BaseGbvVisitContract.InteractorCallBack callBack) {
-        MemberObject memberObject = getMemberClient(memberID);
+        this.memberObject = getMemberClient(memberID);
         if (memberObject != null) {
             final Runnable runnable = () -> {
                 appExecutors.mainThread().execute(() -> callBack.onMemberDetailsReloaded(memberObject));
@@ -106,9 +106,7 @@ public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
 
         final Runnable runnable = () -> {
             try {
-                evaluateSbcActivity(memberObject, details);
-                evaluateComments(memberObject, details);
-
+                createGbvHfVisitTypeAction(memberObject, details);
             } catch (BaseGbvVisitAction.ValidationException e) {
                 Timber.e(e);
             }
@@ -119,18 +117,25 @@ public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
         appExecutors.diskIO().execute(runnable);
     }
 
-    protected void evaluateSbcActivity(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        SbcVisitActionHelper actionHelper = new SbcActivityActionHelper(mContext, memberObject);
+    protected void createGbvHfVisitTypeAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper =
+                new MyGbvHfVisitTypeActionHelper();
 
-        String actionName = mContext.getString(R.string.sbc_visit_action_title_sbc_activity);
+        String actionName =
+                mContext.getString(R.string.gbv_visit_type_action_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.SBC_ACTIVITY).build();
+        BaseGbvVisitAction action = getBuilder(actionName)
+                .withOptional(false)
+                .withDetails(details)
+                .withHelper(actionHelper)
+                .withFormName(Constants.FORMS.GBV_VISIT_TYPE)
+                .build();
 
         actionList.put(actionName, action);
     }
 
     protected void evaluateArtAdherenceCounselling(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        SbcVisitActionHelper actionHelper = new ArtAdherenceCounsellingActionHelper(mContext, memberObject);
+        GbvVisitActionHelper actionHelper = null;
 
         String actionName = mContext.getString(R.string.sbc_visit_action_title_art_and_condom_education);
 
@@ -139,8 +144,8 @@ public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
         actionList.put(actionName, action);
     }
 
-    protected void evaluateComments(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        SbcVisitActionHelper actionHelper = new CommentsActionHelper(mContext, memberObject);
+    protected void createGbvHfConsentAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = null;
 
         String actionName = mContext.getString(R.string.sbc_visit_action_title_comments);
 
@@ -347,7 +352,7 @@ public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
         return Constants.TABLES.SBC_REGISTER;
     }
 
-    class HivStatusActionHelper extends SbcVisitActionHelper {
+    class HivStatusActionHelper extends GbvVisitActionHelper {
         protected Context context;
         protected MemberObject memberObject;
         protected String hivStatus;
@@ -399,4 +404,21 @@ public class BaseGbvVisitInteractor implements BaseGbvVisitContract.Interactor {
         }
     }
 
+    class MyGbvHfVisitTypeActionHelper extends GbvHfVisitTypeActionHelper {
+
+        @Override
+        public void processCanManageCase(String canManageCase) {
+            if (canManageCase.equalsIgnoreCase("yes")) {
+                try {
+                    createGbvHfConsentAction(memberObject, details);
+                } catch (BaseGbvVisitAction.ValidationException e) {
+                    Timber.e(e);
+                }
+            } else {
+                actionList.remove(mContext.getString(R.string.sbc_visit_action_title_comments));
+            }
+
+            appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+        }
+    }
 }

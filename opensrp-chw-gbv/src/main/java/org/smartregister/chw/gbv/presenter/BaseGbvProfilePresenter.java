@@ -31,7 +31,7 @@ public class BaseGbvProfilePresenter implements GbvProfileContract.Presenter {
     }
 
     @Override
-    public void recordSbcButton(@Nullable String visitState) {
+    public void recordGbvButton(@Nullable String visitState) {
         if (getView() == null) {
             return;
         }

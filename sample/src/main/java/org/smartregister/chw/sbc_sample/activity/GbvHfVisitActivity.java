@@ -6,15 +6,15 @@ import android.content.Intent;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.json.JSONObject;
-import org.smartregister.chw.gbv.activity.BaseGbvVisitActivity;
+import org.smartregister.chw.gbv.activity.BaseGbvHfVisitActivity;
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.presenter.BaseGbvVisitPresenter;
 import org.smartregister.chw.gbv.util.Constants;
-import org.smartregister.chw.sbc_sample.interactor.GbvVisitInteractor;
+import org.smartregister.chw.sbc_sample.interactor.GbvHfVisitInteractor;
 
-public class GbvVisitActivity extends BaseGbvVisitActivity {
+public class GbvHfVisitActivity extends BaseGbvHfVisitActivity {
     public static void startMe(Activity activity, String baseEntityID, Boolean isEditMode) {
-        Intent intent = new Intent(activity, GbvVisitActivity.class);
+        Intent intent = new Intent(activity, GbvHfVisitActivity.class);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID, baseEntityID);
         intent.putExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, isEditMode);
         activity.startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
@@ -26,7 +26,7 @@ public class GbvVisitActivity extends BaseGbvVisitActivity {
     }
 
     protected void registerPresenter() {
-        presenter = new BaseGbvVisitPresenter(memberObject, this, new GbvVisitInteractor());
+        presenter = new BaseGbvVisitPresenter(memberObject, this, new GbvHfVisitInteractor());
     }
 
     @Override

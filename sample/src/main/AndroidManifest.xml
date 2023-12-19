@@ -29,7 +29,7 @@
             android:name=".activity.GbvMemberProfileActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activity.GbvVisitActivity"
+            android:name=".activity.GbvHfVisitActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

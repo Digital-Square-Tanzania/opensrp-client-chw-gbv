@@ -13,8 +13,8 @@
     <string name="saving_dialog_title">Saving</string>
     <string name="interpunct" translatable="false">\u00b7</string>
     <string name="malaria_followup_visit">FOLLOWUP\nVISIT</string>
-    <string name="record_sbc">Record SBC follow-up</string>
-    <string name="return_to_previous_sbc_clients_page">Return all SBC Clients</string>
+    <string name="record_gbv">Record GBV/VAC follow-up</string>
+    <string name="return_to_previous_gbv_clients_page">Return all GBV/VAC Clients</string>
     <string name="last_visit_40_days_ago">Last visit %1$s ago</string>
     <string name="view_sbc_followp_history">View followup history</string>
     <string name="sbc_followup_history">Followup History</string>
@@ -55,7 +55,7 @@
     <string name="optional">optional</string>
     <string name="sbc_visit">sbc visit</string>
     <string name="sbc_visit_action_title_hiv_status">HIV Status</string>
-    <string name="sbc_visit_action_title_sbc_activity">SBC Activity</string>
+    <string name="gbv_visit_type_action_title">Visit Type</string>
     <string name="sbc_visit_action_title_services_survey">Services Survey</string>
     <string name="sbc_visit_action_title_health_education">Health Education</string>
     <string name="sbc_visit_action_title_health_education_on_hiv_interventions">Health Education on HIV Interventions</string>
