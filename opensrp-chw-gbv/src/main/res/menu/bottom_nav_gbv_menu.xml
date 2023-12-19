@@ -7,11 +7,4 @@
         android:icon="@mipmap/ic_home"
         android:title="@string/home"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/action_sbc_mobilization"
-        android:enabled="true"
-        android:icon="@mipmap/ic_jobaids"
-        android:title="@string/sbc_mobilization"
-        app:showAsAction="ifRoom" />
 </menu>
