@@ -19,8 +19,11 @@ import timber.log.Timber;
 
 public abstract class GbvHfConsentFollowupActionHelper extends GbvVisitActionHelper {
     private final MemberObject memberObject;
+
     private String clientConsentAfterCounseling;
+
     private String wasSocialWelfareOfficerInvolved;
+
     private JSONObject jsonForm;
 
 
