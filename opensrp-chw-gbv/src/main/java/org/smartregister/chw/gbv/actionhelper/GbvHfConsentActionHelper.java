@@ -18,8 +18,10 @@ import java.util.Map;
 import timber.log.Timber;
 
 public abstract class GbvHfConsentActionHelper extends GbvVisitActionHelper {
-    private final MemberObject memberObject;
+    private MemberObject memberObject;
+
     private String clientConsent;
+
     private JSONObject jsonForm;
 
 
@@ -32,7 +34,7 @@ public abstract class GbvHfConsentActionHelper extends GbvVisitActionHelper {
         super.onJsonFormLoaded(jsonString, context, details);
         try {
             jsonForm = new JSONObject(jsonString);
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Timber.e(e);
         }
     }
@@ -83,5 +85,17 @@ public abstract class GbvHfConsentActionHelper extends GbvVisitActionHelper {
             return BaseGbvVisitAction.Status.COMPLETED;
         } else
             return BaseGbvVisitAction.Status.PENDING;
+    }
+
+    public void setMemberObject(MemberObject memberObject) {
+        this.memberObject = memberObject;
+    }
+
+    public String getClientConsent() {
+        return clientConsent;
+    }
+
+    public void setClientConsent(String clientConsent) {
+        this.clientConsent = clientConsent;
     }
 }
