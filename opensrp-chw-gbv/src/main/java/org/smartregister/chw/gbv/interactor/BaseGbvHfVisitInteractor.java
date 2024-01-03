@@ -9,9 +9,10 @@ import com.google.gson.Gson;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
-import org.json.JSONObject;
 import org.smartregister.chw.gbv.GbvLibrary;
 import org.smartregister.chw.gbv.R;
+import org.smartregister.chw.gbv.actionhelper.GbvHfConsentActionHelper;
+import org.smartregister.chw.gbv.actionhelper.GbvHfConsentFollowupActionHelper;
 import org.smartregister.chw.gbv.actionhelper.GbvHfVisitTypeActionHelper;
 import org.smartregister.chw.gbv.actionhelper.GbvVisitActionHelper;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
@@ -134,25 +135,26 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         actionList.put(actionName, action);
     }
 
-    protected void evaluateArtAdherenceCounselling(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = null;
-
-        String actionName = mContext.getString(R.string.sbc_visit_action_title_art_and_condom_education);
-
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.SBC_ART_CONDOM_EDUCATION).build();
-
-        actionList.put(actionName, action);
-    }
-
     protected void createGbvHfConsentAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = null;
+        GbvVisitActionHelper actionHelper = new MyGbvHfConsentActionHelper(memberObject);
 
-        String actionName = mContext.getString(R.string.sbc_visit_action_title_comments);
+        String actionName = mContext.getString(R.string.gbv_consent_action_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.SBC_COMMENTS).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FORM).build();
 
         actionList.put(actionName, action);
     }
+
+    protected void createGbvHfConsentFollowupAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new MyGbvHfConsentFollowupActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_consent_followup_action_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FOLLOWUP_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
 
     public BaseGbvVisitAction.Builder getBuilder(String title) {
         return new BaseGbvVisitAction.Builder(mContext, title);
@@ -352,58 +354,6 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         return Constants.TABLES.SBC_REGISTER;
     }
 
-    class HivStatusActionHelper extends GbvVisitActionHelper {
-        protected Context context;
-        protected MemberObject memberObject;
-        protected String hivStatus;
-
-        public HivStatusActionHelper(Context context, MemberObject memberObject) {
-            this.context = context;
-            this.memberObject = memberObject;
-        }
-
-        /**
-         * set preprocessed status to be inert
-         *
-         * @return null
-         */
-        @Override
-        public String getPreProcessed() {
-            return null;
-        }
-
-        @Override
-        public void onPayloadReceived(String jsonPayload) {
-            try {
-                JSONObject jsonObject = new JSONObject(jsonPayload);
-                hivStatus = JsonFormUtils.getValue(jsonObject, "hiv_status");
-
-                if (hivStatus.contains("positive")) {
-                    evaluateArtAdherenceCounselling(memberObject, details);
-                } else {
-                    actionList.remove(mContext.getString(R.string.sbc_visit_action_title_art_and_condom_education));
-                }
-                appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
-            } catch (Exception e) {
-                Timber.e(e);
-            }
-        }
-
-        @Override
-        public String evaluateSubTitle() {
-            return null;
-        }
-
-        @Override
-        public BaseGbvVisitAction.Status evaluateStatusOnPayload() {
-            if (StringUtils.isNotBlank(hivStatus)) {
-                return BaseGbvVisitAction.Status.COMPLETED;
-            } else {
-                return BaseGbvVisitAction.Status.PENDING;
-            }
-        }
-    }
-
     class MyGbvHfVisitTypeActionHelper extends GbvHfVisitTypeActionHelper {
 
         @Override
@@ -415,9 +365,45 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                     Timber.e(e);
                 }
             } else {
-                actionList.remove(mContext.getString(R.string.sbc_visit_action_title_comments));
+                actionList.remove(mContext.getString(R.string.gbv_consent_action_title));
+                actionList.remove(mContext.getString(R.string.gbv_consent_followup_action_title));
             }
+            appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+        }
+    }
 
+    class MyGbvHfConsentActionHelper extends GbvHfConsentActionHelper {
+
+        public MyGbvHfConsentActionHelper(MemberObject memberObject) {
+            super(memberObject);
+        }
+
+        @Override
+        public void processClientConsent(String clientConsent) {
+            if (clientConsent.equalsIgnoreCase("no")) {
+                try {
+                    createGbvHfConsentFollowupAction(memberObject, details);
+                } catch (BaseGbvVisitAction.ValidationException e) {
+                    Timber.e(e);
+                }
+            } else {
+                actionList.remove(mContext.getString(R.string.gbv_consent_followup_action_title));
+                //TODO implement the followup actions
+            }
+            appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+        }
+    }
+
+    class MyGbvHfConsentFollowupActionHelper extends GbvHfConsentFollowupActionHelper {
+        public MyGbvHfConsentFollowupActionHelper(MemberObject memberObject) {
+            super(memberObject);
+        }
+
+        @Override
+        public void processConsentFollowup(String clientConsentAfterCounseling, String wasSocialWelfareOfficerInvolved) {
+            if (clientConsentAfterCounseling.equalsIgnoreCase("yes") || wasSocialWelfareOfficerInvolved.equalsIgnoreCase("yes")) {
+                //TODO implement the followup actions
+            }
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
         }
     }

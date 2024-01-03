@@ -28,7 +28,9 @@ jobs:
         run: ./gradlew opensrp-chw-gbv:clean opensrp-chw-gbv:jacocoTestReport --stacktrace -Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"
       - name: Generate Javadoc with Gradle
         run: ./gradlew javadoc
-      - name: Upload coverage to Coveralls with Gradle
-        run: ./gradlew opensrp-chw-gbv:coveralls --stacktrace
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+      - name: Upload coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          file: opensrp-chw-gbv/build/reports/jacoco/jacocoRootReport/merged.xml
+          format: jacoco

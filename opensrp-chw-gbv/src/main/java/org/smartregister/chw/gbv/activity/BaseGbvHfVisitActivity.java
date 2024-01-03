@@ -129,28 +129,8 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
             actionList.put(getString(R.string.gbv_visit_type_action_title), map.get(getString(R.string.gbv_visit_type_action_title)));
         }
 
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_services_survey))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_services_survey), map.get(getString(R.string.sbc_visit_action_title_services_survey)));
-        }
-
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_health_education))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_health_education), map.get(getString(R.string.sbc_visit_action_title_health_education)));
-        }
-
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_health_education_on_hiv_interventions))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_health_education_on_hiv_interventions), map.get(getString(R.string.sbc_visit_action_title_health_education_on_hiv_interventions)));
-        }
-
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_health_education_sbc_materials))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_health_education_sbc_materials), map.get(getString(R.string.sbc_visit_action_title_health_education_sbc_materials)));
-        }
-
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_art_and_condom_education))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_art_and_condom_education), map.get(getString(R.string.sbc_visit_action_title_art_and_condom_education)));
-        }
-
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_comments))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_comments), map.get(getString(R.string.sbc_visit_action_title_comments)));
+        if (map.containsKey(getString(R.string.gbv_consent_action_title))) {
+            actionList.put(getString(R.string.gbv_consent_action_title), map.get(getString(R.string.gbv_consent_action_title)));
         }
         //====================End of Necessary evil ====================================
 
@@ -260,7 +240,7 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
 
     @Override
     public void redrawHeader(MemberObject memberObject) {
-        tvTitle.setText(MessageFormat.format("{0}, {1} \u00B7 {2}", memberObject.getFullName(), String.valueOf(memberObject.getAge()), getString(R.string.sbc_visit)));
+        tvTitle.setText(MessageFormat.format("{0}, {1} \u00B7 {2}", memberObject.getFullName(), String.valueOf(memberObject.getAge()), getString(R.string.gbv_visit)));
     }
 
     @Override

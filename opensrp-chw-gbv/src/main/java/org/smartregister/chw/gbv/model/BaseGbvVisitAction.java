@@ -34,7 +34,7 @@ public class BaseGbvVisitAction {
     private String formName;
     private String jsonPayload;
     private String selectedOption;
-    private SbcVisitActionHelper sbcVisitActionHelper;
+    private GbvVisitActionHelper gbvVisitActionHelper;
     private final Map<String, List<VisitDetail>> details;
     private final Context context;
     private final Validator validator;
@@ -51,7 +51,7 @@ public class BaseGbvVisitAction {
         this.optional = builder.optional;
         this.destinationFragment = builder.destinationFragment;
         this.formName = builder.formName;
-        this.sbcVisitActionHelper = builder.sbcVisitActionHelper;
+        this.gbvVisitActionHelper = builder.gbvVisitActionHelper;
         this.details = builder.details;
         this.context = builder.context;
         this.processingMode = builder.processingMode;
@@ -80,9 +80,9 @@ public class BaseGbvVisitAction {
                 jsonPayload = jsonObject.toString();
             }
 
-            if (sbcVisitActionHelper != null) {
-                sbcVisitActionHelper.onJsonFormLoaded(jsonPayload, context, details);
-                String pre_processed = sbcVisitActionHelper.getPreProcessed();
+            if (gbvVisitActionHelper != null) {
+                gbvVisitActionHelper.onJsonFormLoaded(jsonPayload, context, details);
+                String pre_processed = gbvVisitActionHelper.getPreProcessed();
                 if (StringUtils.isNotBlank(pre_processed)) {
                     JSONObject jsonObject = new JSONObject(pre_processed);
                     JsonFormUtils.populateForm(jsonObject, details);
@@ -90,12 +90,12 @@ public class BaseGbvVisitAction {
                     this.jsonPayload = jsonObject.toString();
                 }
 
-                String sub_title = sbcVisitActionHelper.getPreProcessedSubTitle();
+                String sub_title = gbvVisitActionHelper.getPreProcessedSubTitle();
                 if (StringUtils.isNotBlank(sub_title)) {
                     this.subTitle = sub_title;
                 }
 
-                ScheduleStatus status = sbcVisitActionHelper.getPreProcessedStatus();
+                ScheduleStatus status = gbvVisitActionHelper.getPreProcessedStatus();
                 if (status != null) {
                     this.scheduleStatus = status;
                 }
@@ -236,22 +236,22 @@ public class BaseGbvVisitAction {
     }
 
     private void onPayloadReceivedNotifyHelper(String jsonPayload) {
-        if (sbcVisitActionHelper == null)
+        if (gbvVisitActionHelper == null)
             return;
 
-        sbcVisitActionHelper.onPayloadReceived(jsonPayload);
+        gbvVisitActionHelper.onPayloadReceived(jsonPayload);
 
-        String sub_title = sbcVisitActionHelper.evaluateSubTitle();
+        String sub_title = gbvVisitActionHelper.evaluateSubTitle();
         if (sub_title != null) {
             setSubTitle(sub_title);
         }
 
-        String post_process = sbcVisitActionHelper.postProcess(jsonPayload);
+        String post_process = gbvVisitActionHelper.postProcess(jsonPayload);
         if (post_process != null) {
-            this.jsonPayload = sbcVisitActionHelper.postProcess(jsonPayload);
+            this.jsonPayload = gbvVisitActionHelper.postProcess(jsonPayload);
         }
 
-        sbcVisitActionHelper.onPayloadReceived(this);
+        gbvVisitActionHelper.onPayloadReceived(this);
     }
 
     public void setProcessedJsonPayload(String jsonPayload) {
@@ -282,12 +282,12 @@ public class BaseGbvVisitAction {
         this.selectedOption = selectedOption;
     }
 
-    public SbcVisitActionHelper getSbcVisitActionHelper() {
-        return sbcVisitActionHelper;
+    public GbvVisitActionHelper getSbcVisitActionHelper() {
+        return gbvVisitActionHelper;
     }
 
-    public void setSbcVisitActionHelper(SbcVisitActionHelper sbcVisitActionHelper) {
-        this.sbcVisitActionHelper = sbcVisitActionHelper;
+    public void setSbcVisitActionHelper(GbvVisitActionHelper gbvVisitActionHelper) {
+        this.gbvVisitActionHelper = gbvVisitActionHelper;
     }
 
     /**
@@ -321,7 +321,7 @@ public class BaseGbvVisitAction {
      */
     public enum ProcessingMode {COMBINED, SEPARATE}
 
-    public interface SbcVisitActionHelper {
+    public interface GbvVisitActionHelper {
 
         /**
          * Inject values to the json form before rendering
@@ -390,7 +390,7 @@ public class BaseGbvVisitAction {
         private boolean optional = true;
         private BaseHomeVisitFragment destinationFragment;
         private String formName;
-        private SbcVisitActionHelper sbcVisitActionHelper;
+        private GbvVisitActionHelper gbvVisitActionHelper;
         private Map<String, List<VisitDetail>> details = new HashMap<>();
         private Context context;
         private String jsonPayload;
@@ -446,8 +446,8 @@ public class BaseGbvVisitAction {
             return this;
         }
 
-        public Builder withHelper(SbcVisitActionHelper sbcVisitActionHelper) {
-            this.sbcVisitActionHelper = sbcVisitActionHelper;
+        public Builder withHelper(GbvVisitActionHelper gbvVisitActionHelper) {
+            this.gbvVisitActionHelper = gbvVisitActionHelper;
             return this;
         }
 

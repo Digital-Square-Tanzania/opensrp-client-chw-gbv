@@ -135,7 +135,7 @@ public class BaseGbvRegisterActivity extends BaseRegisterActivity implements Gbv
 
     @MenuRes
     public int getMenuResource() {
-        return R.menu.bottom_nav_sbc_menu;
+        return R.menu.bottom_nav_gbv_menu;
     }
 
     @Override

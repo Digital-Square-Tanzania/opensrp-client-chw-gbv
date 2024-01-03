@@ -2,8 +2,7 @@
     <string name="app_name" translatable="false">test</string>
     <string name="error_unable_to_start_form">An error occurred when starting the form</string>
     <string name="error_unable_to_save_form">An error occurred when saving the form</string>
-    <string name="gbv">SBC for HIV</string>
-    <string name="sbc_monthly_social_media_report">SBC Mothly Social Media Reports</string>
+    <string name="gbv">GBV/VAC</string>
     <string name="add_member">Add Member</string>
     <string name="sort">Sort</string>
     <string name="home">Home</string>
@@ -53,17 +52,10 @@
 
     <string name="error_unable_save_home_visit">unable to save home visit</string>
     <string name="optional">optional</string>
-    <string name="sbc_visit">sbc visit</string>
     <string name="sbc_visit_action_title_hiv_status">HIV Status</string>
     <string name="gbv_visit_type_action_title">Visit Type</string>
-    <string name="sbc_visit_action_title_services_survey">Services Survey</string>
-    <string name="sbc_visit_action_title_health_education">Health Education</string>
-    <string name="sbc_visit_action_title_health_education_on_hiv_interventions">Health Education on HIV Interventions</string>
-    <string name="sbc_visit_action_title_health_education_sbc_materials">HIV/AIDS Health Education SBC Materials</string>
-    <string name="sbc_visit_action_title_art_and_condom_education">ART Adherence Counselling</string>
-    <string name="sbc_visit_action_title_comments">Comments</string>
-
-    <string name="sbc_registration">SBC Registration</string>
-    <string name="sbc_mobilization">SBC Mobilization</string>
+    <string name="gbv_consent_action_title">Consent</string>
+    <string name="gbv_consent_followup_action_title">Consent Followup</string>
+    <string name="gbv_visit">GBV Visit</string>
 
 </resources>
