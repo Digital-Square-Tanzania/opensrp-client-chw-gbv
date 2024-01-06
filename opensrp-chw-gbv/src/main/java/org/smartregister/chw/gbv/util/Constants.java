@@ -53,6 +53,8 @@ public interface Constants {
         String GBV_REFERRAL_AND_LINKAGE = "gbv_referral_and_linkage";
 
         String GBV_NEXT_APPOINTMENT_DATE = "gbv_next_appointment_date";
+
+        String GBV_HOME_VISIT = "gbv_home_visit";
     }
 
     interface TABLES {
@@ -70,7 +72,7 @@ public interface Constants {
         String BASE_ENTITY_ID = "BASE_ENTITY_ID";
         String FAMILY_BASE_ENTITY_ID = "FAMILY_BASE_ENTITY_ID";
         String ACTION = "ACTION";
-        String SBC_FORM_NAME = "SBC_FORM_NAME";
+        String GBV_FORM_NAME = "GBV_FORM_NAME";
         String EDIT_MODE = "editMode";
         String MEMBER_PROFILE_OBJECT = "MemberObject";
 

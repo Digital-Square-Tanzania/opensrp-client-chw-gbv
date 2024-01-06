@@ -53,7 +53,7 @@ public class BaseGbvRegisterActivity extends BaseRegisterActivity implements Gbv
         BASE_ENTITY_ID = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.BASE_ENTITY_ID);
         FAMILY_BASE_ENTITY_ID = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.FAMILY_BASE_ENTITY_ID);
         ACTION = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.ACTION);
-        FORM_NAME = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.SBC_FORM_NAME);
+        FORM_NAME = getIntent().getStringExtra(Constants.ACTIVITY_PAYLOAD.GBV_FORM_NAME);
         onStartActivityWithAction();
     }
 
