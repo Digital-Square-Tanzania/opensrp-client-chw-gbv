@@ -967,14 +967,14 @@
         "label": "HIV status",
         "options": [
           {
-            "key": "Positive",
-            "text": "positive",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
           {
-            "key": "Negative",
-            "text": "negative",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },

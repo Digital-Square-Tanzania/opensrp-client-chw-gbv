@@ -65,14 +65,14 @@
         "label": "Please select UPT Results",
         "options": [
           {
-            "key": "Positive",
-            "text": "positive",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
           {
-            "key": "Negative",
-            "text": "negative",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },
@@ -97,14 +97,14 @@
         "label": "Please select HIV Test Results",
         "options": [
           {
-            "key": "Positive",
-            "text": "positive",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
           {
-            "key": "Negative",
-            "text": "negative",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },
@@ -129,14 +129,14 @@
         "label": "Please select STI Test Results",
         "options": [
           {
-            "key": "Positive",
-            "text": "positive",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
           {
-            "key": "Negative",
-            "text": "negative",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },
@@ -161,14 +161,14 @@
         "label": "Please select Hepatitis B Test Results",
         "options": [
           {
-            "key": "Positive",
-            "text": "positive",
+            "key": "positive",
+            "text": "Positive",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "positive"
           },
           {
-            "key": "Negative",
-            "text": "negative",
+            "key": "negative",
+            "text": "Negative",
             "openmrs_entity": "concept",
             "openmrs_entity_id": "negative"
           },
