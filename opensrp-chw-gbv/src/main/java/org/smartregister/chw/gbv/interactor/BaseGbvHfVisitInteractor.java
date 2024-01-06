@@ -11,10 +11,19 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 import org.smartregister.chw.gbv.GbvLibrary;
 import org.smartregister.chw.gbv.R;
+import org.smartregister.chw.gbv.actionhelper.EducationAndCounsellingActionHelper;
+import org.smartregister.chw.gbv.actionhelper.ForensicExaminationActionHelper;
 import org.smartregister.chw.gbv.actionhelper.GbvHfConsentActionHelper;
 import org.smartregister.chw.gbv.actionhelper.GbvHfConsentFollowupActionHelper;
 import org.smartregister.chw.gbv.actionhelper.GbvHfVisitTypeActionHelper;
 import org.smartregister.chw.gbv.actionhelper.GbvVisitActionHelper;
+import org.smartregister.chw.gbv.actionhelper.HistoryCollectionActionHelper;
+import org.smartregister.chw.gbv.actionhelper.LabInvestigationActionHelper;
+import org.smartregister.chw.gbv.actionhelper.LinkageActionHelper;
+import org.smartregister.chw.gbv.actionhelper.MedicalExaminationActionHelper;
+import org.smartregister.chw.gbv.actionhelper.NextAppointmentDateActionHelper;
+import org.smartregister.chw.gbv.actionhelper.PhysicalExaminationActionHelper;
+import org.smartregister.chw.gbv.actionhelper.SafetyPlanActionHelper;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.dao.GbvDao;
 import org.smartregister.chw.gbv.domain.MemberObject;
@@ -151,6 +160,96 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         String actionName = mContext.getString(R.string.gbv_consent_followup_action_title);
 
         BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FOLLOWUP_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createHistoryCollectionAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new HistoryCollectionActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_history_collection_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_HISTORY_COLLECTION_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createMedicalExaminationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new MedicalExaminationActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_medical_examination_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_MEDICAL_EXAMINATION_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createPhysicalExaminationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new PhysicalExaminationActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_physical_examination_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_PHYSICAL_EXAMINATION_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createForensicExaminationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new ForensicExaminationActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_forensic_examination_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_FORENSIC_EXAMINATION_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createLabInvestigationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new LabInvestigationActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_lab_investigation_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_LAB_INVESTIGATION_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createEducationAndCounsellingAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new EducationAndCounsellingActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_education_and_counselling_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_EDUCATION_AND_COUNSELLING_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createSafetyPlanAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new SafetyPlanActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_safety_plan_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_SAFETY_PLAN).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createLinkageAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new LinkageActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_linkage_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_REFERRAL_AND_LINKAGE).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createNextAppointmentDateAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new NextAppointmentDateActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_next_appointment_date_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_NEXT_APPOINTMENT_DATE).build();
 
         actionList.put(actionName, action);
     }
@@ -367,6 +466,15 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
             } else {
                 actionList.remove(mContext.getString(R.string.gbv_consent_action_title));
                 actionList.remove(mContext.getString(R.string.gbv_consent_followup_action_title));
+                actionList.remove(mContext.getString(R.string.gbv_history_collection_title));
+                actionList.remove(mContext.getString(R.string.gbv_medical_examination_title));
+                actionList.remove(mContext.getString(R.string.gbv_physical_examination_title));
+                actionList.remove(mContext.getString(R.string.gbv_forensic_examination_title));
+                actionList.remove(mContext.getString(R.string.gbv_lab_investigation_title));
+                actionList.remove(mContext.getString(R.string.gbv_education_and_counselling_title));
+                actionList.remove(mContext.getString(R.string.gbv_safety_plan_title));
+                actionList.remove(mContext.getString(R.string.gbv_linkage_title));
+                actionList.remove(mContext.getString(R.string.gbv_next_appointment_date_title));
             }
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
         }
@@ -388,7 +496,19 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                 }
             } else {
                 actionList.remove(mContext.getString(R.string.gbv_consent_followup_action_title));
-                //TODO implement the followup actions
+                try {
+                    createHistoryCollectionAction(memberObject, details);
+                    createMedicalExaminationAction(memberObject, details);
+                    createPhysicalExaminationAction(memberObject, details);
+                    createForensicExaminationAction(memberObject, details);
+                    createLabInvestigationAction(memberObject, details);
+                    createEducationAndCounsellingAction(memberObject, details);
+                    createSafetyPlanAction(memberObject, details);
+                    createLinkageAction(memberObject, details);
+                    createNextAppointmentDateAction(memberObject, details);
+                } catch (BaseGbvVisitAction.ValidationException e) {
+                    Timber.e(e);
+                }
             }
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
         }
@@ -402,7 +522,29 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         @Override
         public void processConsentFollowup(String clientConsentAfterCounseling, String wasSocialWelfareOfficerInvolved) {
             if (clientConsentAfterCounseling.equalsIgnoreCase("yes") || wasSocialWelfareOfficerInvolved.equalsIgnoreCase("yes")) {
-                //TODO implement the followup actions
+                try {
+                    createHistoryCollectionAction(memberObject, details);
+                    createMedicalExaminationAction(memberObject, details);
+                    createPhysicalExaminationAction(memberObject, details);
+                    createForensicExaminationAction(memberObject, details);
+                    createLabInvestigationAction(memberObject, details);
+                    createEducationAndCounsellingAction(memberObject, details);
+                    createSafetyPlanAction(memberObject, details);
+                    createLinkageAction(memberObject, details);
+                    createNextAppointmentDateAction(memberObject, details);
+                } catch (BaseGbvVisitAction.ValidationException e) {
+                    Timber.e(e);
+                }
+            } else {
+                actionList.remove(mContext.getString(R.string.gbv_history_collection_title));
+                actionList.remove(mContext.getString(R.string.gbv_medical_examination_title));
+                actionList.remove(mContext.getString(R.string.gbv_physical_examination_title));
+                actionList.remove(mContext.getString(R.string.gbv_forensic_examination_title));
+                actionList.remove(mContext.getString(R.string.gbv_lab_investigation_title));
+                actionList.remove(mContext.getString(R.string.gbv_education_and_counselling_title));
+                actionList.remove(mContext.getString(R.string.gbv_safety_plan_title));
+                actionList.remove(mContext.getString(R.string.gbv_linkage_title));
+                actionList.remove(mContext.getString(R.string.gbv_next_appointment_date_title));
             }
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
         }
