@@ -25,8 +25,8 @@ public class EntryActivity extends SecuredActivity implements View.OnClickListen
         setSupportActionBar(toolbar);
 
         findViewById(R.id.sbc_activity).setOnClickListener(this);
-        findViewById(R.id.sbc_home_visit).setOnClickListener(this);
-        findViewById(R.id.sbc_profile).setOnClickListener(this);
+        findViewById(R.id.gbv_community_visit).setOnClickListener(this);
+        findViewById(R.id.gbv_hf_profile).setOnClickListener(this);
     }
 
     @Override
@@ -45,10 +45,10 @@ public class EntryActivity extends SecuredActivity implements View.OnClickListen
             case R.id.sbc_activity:
                 startActivity(new Intent(this, GbvRegisterActivity.class));
                 break;
-            case R.id.sbc_home_visit:
-                GbvHfVisitActivity.startMe(this, "12345", false);
+            case R.id.gbv_community_visit:
+                GbvCommunityMemberProfileActivity.startMe(this, "12345");
                 break;
-            case R.id.sbc_profile:
+            case R.id.gbv_hf_profile:
                 GbvMemberProfileActivity.startMe(this, "12345");
                 break;
             default:

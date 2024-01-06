@@ -12,7 +12,8 @@
     <string name="saving_dialog_title">Saving</string>
     <string name="interpunct" translatable="false">\u00b7</string>
     <string name="malaria_followup_visit">FOLLOWUP\nVISIT</string>
-    <string name="record_gbv">Record GBV/VAC follow-up</string>
+    <string name="record_gbv">Record GBV/VAC Visit</string>
+    <string name="record_gbv_home_visit">Record GBV/VAC Community Visit</string>
     <string name="return_to_previous_gbv_clients_page">Return all GBV/VAC Clients</string>
     <string name="last_visit_40_days_ago">Last visit %1$s ago</string>
     <string name="view_sbc_followp_history">View followup history</string>
