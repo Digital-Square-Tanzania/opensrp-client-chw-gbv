@@ -3,10 +3,11 @@ package org.smartregister.chw.gbv.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.MenuRes;
-import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
@@ -17,15 +18,15 @@ import org.smartregister.AllConstants;
 import org.smartregister.Context;
 import org.smartregister.chw.gbv.R;
 import org.smartregister.chw.gbv.contract.GbvRegisterContract;
-import org.smartregister.chw.gbv.interactor.BaseGbvRegisterInteractor;
-import org.smartregister.chw.gbv.model.BaseGbvRegisterModel;
-import org.smartregister.chw.gbv.util.GbvUtil;
 import org.smartregister.chw.gbv.fragment.BaseGbvRegisterFragment;
+import org.smartregister.chw.gbv.interactor.BaseGbvRegisterInteractor;
 import org.smartregister.chw.gbv.listener.GbvBottomNavigationListener;
+import org.smartregister.chw.gbv.model.BaseGbvRegisterModel;
 import org.smartregister.chw.gbv.presenter.BaseGbvRegisterPresenter;
 import org.smartregister.chw.gbv.util.Constants;
 import org.smartregister.chw.gbv.util.DBConstants;
 import org.smartregister.chw.gbv.util.GbvJsonFormUtils;
+import org.smartregister.chw.gbv.util.GbvUtil;
 import org.smartregister.helper.BottomNavigationHelper;
 import org.smartregister.listener.BottomNavigationListener;
 import org.smartregister.repository.BaseRepository;

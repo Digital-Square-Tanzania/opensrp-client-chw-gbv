@@ -5,8 +5,8 @@ import android.content.Context;
 import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONObject;
-import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.domain.MemberObject;
+import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

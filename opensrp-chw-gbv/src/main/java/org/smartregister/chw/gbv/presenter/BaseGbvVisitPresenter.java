@@ -2,9 +2,9 @@ package org.smartregister.chw.gbv.presenter;
 
 import org.json.JSONObject;
 import org.smartregister.chw.gbv.R;
-import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.domain.MemberObject;
+import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.util.JsonFormUtils;
 import org.smartregister.util.FormUtils;
 

@@ -4,6 +4,7 @@
   "validate_on_submit": true,
   "entity_id": "",
   "relational_id": "",
+  "global": {},
   "metadata": {
     "start": {
       "openmrs_entity_parent": "",
@@ -665,7 +666,7 @@
         "constraints": [
           {
             "type": "numeric",
-            "ex": "lessThanEqualTo(., step1:gravida)",
+            "ex": "lessThanEqualTo(., step4:gravida)",
             "err": "Parity must be equal to or less than gravida"
           }
         ],

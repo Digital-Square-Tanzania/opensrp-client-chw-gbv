@@ -3,8 +3,8 @@ package org.smartregister.chw.gbv.interactor;
 import androidx.annotation.VisibleForTesting;
 
 import org.smartregister.chw.gbv.contract.GbvRegisterContract;
-import org.smartregister.chw.gbv.util.GbvUtil;
 import org.smartregister.chw.gbv.util.AppExecutors;
+import org.smartregister.chw.gbv.util.GbvUtil;
 
 public class BaseGbvRegisterInteractor implements GbvRegisterContract.Interactor {
 

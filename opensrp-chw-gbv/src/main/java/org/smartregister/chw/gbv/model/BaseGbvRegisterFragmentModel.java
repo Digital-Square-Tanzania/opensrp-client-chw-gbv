@@ -1,8 +1,8 @@
 package org.smartregister.chw.gbv.model;
 
-import org.smartregister.chw.gbv.util.ConfigHelper;
 import org.smartregister.chw.gbv.GbvLibrary;
 import org.smartregister.chw.gbv.contract.GbvRegisterFragmentContract;
+import org.smartregister.chw.gbv.util.ConfigHelper;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.View;

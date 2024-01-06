@@ -1,9 +1,11 @@
 package org.smartregister.chw.gbv.presenter;
 
+import static org.apache.commons.lang3.StringUtils.trim;
+
 import org.apache.commons.lang3.StringUtils;
+import org.smartregister.chw.gbv.contract.GbvRegisterFragmentContract;
 import org.smartregister.chw.gbv.util.Constants;
 import org.smartregister.chw.gbv.util.DBConstants;
-import org.smartregister.chw.gbv.contract.GbvRegisterFragmentContract;
 import org.smartregister.configurableviews.model.RegisterConfiguration;
 import org.smartregister.configurableviews.model.View;
 import org.smartregister.configurableviews.model.ViewConfiguration;
@@ -11,8 +13,6 @@ import org.smartregister.configurableviews.model.ViewConfiguration;
 import java.lang.ref.WeakReference;
 import java.util.Set;
 import java.util.TreeSet;
-
-import static org.apache.commons.lang3.StringUtils.trim;
 
 public class BaseGbvRegisterFragmentPresenter implements GbvRegisterFragmentContract.Presenter {
 
