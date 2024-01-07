@@ -21,18 +21,18 @@ public class BaseGbvFloatingMenu extends LinearLayout implements View.OnClickLis
     }
 
     protected void initUi() {
-        inflate(getContext(), R.layout.view_sbc_floating_menu, this);
-        FloatingActionButton fab = findViewById(R.id.sbc_fab);
+        inflate(getContext(), R.layout.view_gbv_floating_menu, this);
+        FloatingActionButton fab = findViewById(R.id.gbv_fab);
         if (fab != null)
             fab.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.sbc_fab) {
+        if (view.getId() == R.id.gbv_fab) {
             Activity activity = (Activity) getContext();
             BaseGbvCallDialogFragment.launchDialog(activity, MEMBER_OBJECT);
-        }  else if (view.getId() == R.id.sbc_refer_to_facility_layout) {
+        }  else if (view.getId() == R.id.gbv_refer_to_facility_layout) {
             Activity activity = (Activity) getContext();
             BaseGbvCallDialogFragment.launchDialog(activity, MEMBER_OBJECT);
         }

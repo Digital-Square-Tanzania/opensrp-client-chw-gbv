@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample;
+package org.smartregister.chw.gbv_sample;
 
 import org.junit.Test;
 

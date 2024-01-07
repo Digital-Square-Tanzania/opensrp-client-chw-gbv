@@ -1,15 +1,15 @@
-package org.smartregister.chw.sbc_sample.application;
+package org.smartregister.chw.gbv_sample.application;
 
 import com.evernote.android.job.JobManager;
 
 import org.smartregister.Context;
 import org.smartregister.CoreLibrary;
-import org.smartregister.chw.sbc_sample.BuildConfig;
+import org.smartregister.chw.gbv_sample.BuildConfig;
 import org.smartregister.chw.gbv.GbvLibrary;
 import org.smartregister.chw.gbv.util.DBConstants;
-import org.smartregister.chw.sbc_sample.job.SampleJobCreator;
-import org.smartregister.chw.sbc_sample.repository.SampleRepository;
-import org.smartregister.chw.sbc_sample.utils.SampleConstants;
+import org.smartregister.chw.gbv_sample.job.SampleJobCreator;
+import org.smartregister.chw.gbv_sample.repository.SampleRepository;
+import org.smartregister.chw.gbv_sample.utils.SampleConstants;
 import org.smartregister.commonregistry.CommonFtsObject;
 import org.smartregister.configurableviews.ConfigurableViewsLibrary;
 import org.smartregister.receiver.SyncStatusBroadcastReceiver;

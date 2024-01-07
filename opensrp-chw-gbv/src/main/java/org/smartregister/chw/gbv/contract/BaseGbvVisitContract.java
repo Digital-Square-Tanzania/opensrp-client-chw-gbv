@@ -19,11 +19,11 @@ public interface BaseGbvVisitContract {
 
         Form getFormConfig();
 
-        void startForm(BaseGbvVisitAction pmtctHomeVisitAction);
+        void startForm(BaseGbvVisitAction baseGbvVisitAction);
 
         void startFormActivity(JSONObject jsonForm);
 
-        void startFragment(BaseGbvVisitAction pmtctHomeVisitAction);
+        void startFragment(BaseGbvVisitAction baseGbvVisitAction);
 
         void redrawHeader(MemberObject memberObject);
 
@@ -31,7 +31,7 @@ public interface BaseGbvVisitContract {
 
         void displayProgressBar(boolean state);
 
-        Map<String, BaseGbvVisitAction> getPmtctHomeVisitActions();
+        Map<String, BaseGbvVisitAction> getBaseGbvVisitActions();
 
         void close();
 

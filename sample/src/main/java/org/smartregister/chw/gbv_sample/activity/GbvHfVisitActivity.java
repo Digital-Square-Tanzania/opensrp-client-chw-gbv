@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.activity;
+package org.smartregister.chw.gbv_sample.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import org.smartregister.chw.gbv.activity.BaseGbvHfVisitActivity;
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.presenter.BaseGbvVisitPresenter;
 import org.smartregister.chw.gbv.util.Constants;
-import org.smartregister.chw.sbc_sample.interactor.GbvHfVisitInteractor;
+import org.smartregister.chw.gbv_sample.interactor.GbvHfVisitInteractor;
 
 public class GbvHfVisitActivity extends BaseGbvHfVisitActivity {
     public static void startMe(Activity activity, String baseEntityID, Boolean isEditMode) {

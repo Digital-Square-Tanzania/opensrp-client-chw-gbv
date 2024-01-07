@@ -97,7 +97,7 @@ public class BaseGbvRegisterFragmentPresenter implements GbvRegisterFragmentCont
 
     @Override
     public String getMainTable() {
-        return Constants.TABLES.SBC_REGISTER;
+        return Constants.TABLES.GBV_REGISTER;
     }
 
     @Override

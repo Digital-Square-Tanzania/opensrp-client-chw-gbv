@@ -3,8 +3,11 @@ package org.smartregister.chw.gbv.util;
 public interface Constants {
 
     int REQUEST_CODE_GET_JSON = 2244;
+
     String ENCOUNTER_TYPE = "encounter_type";
+
     String STEP_ONE = "step1";
+
     String STEP_TWO = "step2";
 
     interface JSON_FORM_EXTRA {
@@ -17,12 +20,9 @@ public interface Constants {
     }
 
     interface EVENT_TYPE {
-        String SBC_REGISTRATION = "SBC Registration";
-        String SBC_FOLLOW_UP_VISIT = "SBC Follow-up Visit";
+        String GBV_REGISTRATION = "GBV Registration";
 
-        String SBC_HEALTH_EDUCATION_MOBILIZATION = "SBC Health Education Mobilization";
-
-        String SBC_MONTHLY_SOCIAL_MEDIA_REPORT = "Monthly Social Media Report";
+        String GBV_FOLLOW_UP_VISIT = "GBV Follow-up Visit";
 
         String VOID_EVENT = "Void Event";
 
@@ -58,13 +58,9 @@ public interface Constants {
     }
 
     interface TABLES {
-        String SBC_REGISTER = "ec_sbc_register";
+        String GBV_REGISTER = "ec_gbv_register";
 
-        String SBC_FOLLOW_UP = "ec_sbc_follow_up_visit";
-
-        String SBC_MOBILIZATION_SESSIONS = "ec_sbc_mobilization_session";
-
-        String SBC_MONTHLY_SOCIAL_MEDIA_REPORT = "ec_sbc_monthly_social_media_report";
+        String GBV_FOLLOW_UP = "ec_gbv_follow_up_visit";
 
     }
 
@@ -84,7 +80,7 @@ public interface Constants {
     }
 
     interface CONFIGURATION {
-        String SBC_REGISTRATION_CONFIGURATION = "sbc_registration";
+        String GBV_REGISTRATION_CONFIGURATION = "gbv_registration";
     }
 
 }

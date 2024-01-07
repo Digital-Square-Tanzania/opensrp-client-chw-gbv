@@ -54,10 +54,15 @@ import timber.log.Timber;
 public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor {
 
     private final GbvLibrary gbvLibrary;
+
     private final LinkedHashMap<String, BaseGbvVisitAction> actionList;
+
     protected AppExecutors appExecutors;
+
     private ECSyncHelper syncHelper;
+
     private Context mContext;
+
     private Map<String, List<VisitDetail>> details = null;
 
     private BaseGbvVisitContract.InteractorCallBack callBack;
@@ -108,7 +113,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         mContext = view.getContext();
         this.callBack = callBack;
         if (view.getEditMode()) {
-            Visit lastVisit = gbvLibrary.visitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT);
+            Visit lastVisit = gbvLibrary.visitRepository().getLatestVisit(memberObject.getBaseEntityId(), Constants.EVENT_TYPE.GBV_FOLLOW_UP_VISIT);
             if (lastVisit != null) {
                 details = VisitUtils.getVisitGroups(gbvLibrary.visitDetailsRepository().getVisits(lastVisit.getVisitId()));
             }
@@ -429,7 +434,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
      */
     protected void prepareEvent(Event baseEvent) {
         if (baseEvent != null) {
-            // add sbc date obs and last
+            // add gbv date obs and last
             List<Object> list = new ArrayList<>();
             list.add(new Date());
             baseEvent.addObs(new Obs("concept", "text", "vmmc_visit_date", "", list, new ArrayList<>(), null, "vmmc_visit_date"));
@@ -446,11 +451,11 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     protected String getEncounterType() {
-        return Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT;
+        return Constants.EVENT_TYPE.GBV_FOLLOW_UP_VISIT;
     }
 
     protected String getTableName() {
-        return Constants.TABLES.SBC_REGISTER;
+        return Constants.TABLES.GBV_REGISTER;
     }
 
     class MyGbvHfVisitTypeActionHelper extends GbvHfVisitTypeActionHelper {

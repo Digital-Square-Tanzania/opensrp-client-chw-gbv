@@ -1,6 +1,6 @@
-package org.smartregister.chw.sbc_sample.activity;
+package org.smartregister.chw.gbv_sample.activity;
 
-import static org.smartregister.chw.sbc_sample.utils.JsonFormUtils.REQUEST_CODE_GET_JSON;
+import static org.smartregister.chw.gbv_sample.utils.JsonFormUtils.REQUEST_CODE_GET_JSON;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import org.smartregister.chw.gbv.activity.BaseGbvProfileActivity;
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.util.Constants;
 import org.smartregister.chw.gbv.util.GbvJsonFormUtils;
-import org.smartregister.chw.sbc_sample.R;
+import org.smartregister.chw.gbv_sample.R;
 
 import timber.log.Timber;
 

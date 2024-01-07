@@ -54,7 +54,7 @@ public class BaseGbvVisitPresenter implements BaseGbvVisitContract.Presenter, Ba
     public void submitVisit() {
         if (view.get() != null) {
             view.get().displayProgressBar(true);
-            interactor.submitVisit(view.get().getEditMode(), memberObject.getBaseEntityId(), view.get().getPmtctHomeVisitActions(), this);
+            interactor.submitVisit(view.get().getEditMode(), memberObject.getBaseEntityId(), view.get().getBaseGbvVisitActions(), this);
         }
     }
 

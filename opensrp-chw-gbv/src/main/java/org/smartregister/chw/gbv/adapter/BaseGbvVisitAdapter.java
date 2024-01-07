@@ -23,12 +23,12 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapter.MyViewHolder> {
-    private Map<String, BaseGbvVisitAction> pmtctHomeVisitActionList;
+    private Map<String, BaseGbvVisitAction> gbvVisitActionList;
     private Context context;
     private BaseGbvVisitContract.View visitContractView;
 
     public BaseGbvVisitAdapter(Context context, BaseGbvVisitContract.View view, LinkedHashMap<String, BaseGbvVisitAction> myDataset) {
-        pmtctHomeVisitActionList = myDataset;
+        gbvVisitActionList = myDataset;
         this.context = context;
         this.visitContractView = view;
     }
@@ -38,7 +38,7 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
     public BaseGbvVisitAdapter.MyViewHolder onCreateViewHolder(@NotNull ViewGroup parent,
                                                                int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.sbc_visit_item, parent, false);
+                .inflate(R.layout.gbv_visit_item, parent, false);
         return new MyViewHolder(v);
     }
 
@@ -50,7 +50,7 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
      */
     private BaseGbvVisitAction getByPosition(int position) {
         int count = -1;
-        for (Map.Entry<String, BaseGbvVisitAction> entry : pmtctHomeVisitActionList.entrySet()) {
+        for (Map.Entry<String, BaseGbvVisitAction> entry : gbvVisitActionList.entrySet()) {
             if (entry.getValue().isValid())
                 count++;
 
@@ -65,12 +65,12 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
     @Override
     public void onBindViewHolder(@NotNull MyViewHolder holder, int position) {
 
-        BaseGbvVisitAction sbcVisitAction = getByPosition(position);
-        if (sbcVisitAction == null)
+        BaseGbvVisitAction gbvVisitAction = getByPosition(position);
+        if (gbvVisitAction == null)
 
             return;
 
-        if (!sbcVisitAction.isEnabled()) {
+        if (!gbvVisitAction.isEnabled()) {
             holder.titleText.setTextColor(context.getResources().getColor(R.color.grey));
             holder.descriptionText.setTextColor(context.getResources().getColor(R.color.grey));
         } else {
@@ -78,19 +78,19 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
         }
 
         String title = MessageFormat.format("{0}<i>{1}</i>",
-                sbcVisitAction.getTitle(),
-                sbcVisitAction.isOptional() ? " - " + context.getString(R.string.optional) : ""
+                gbvVisitAction.getTitle(),
+                gbvVisitAction.isOptional() ? " - " + context.getString(R.string.optional) : ""
         );
         holder.titleText.setText(Html.fromHtml(title));
-        if (StringUtils.isNotBlank(sbcVisitAction.getSubTitle())) {
+        if (StringUtils.isNotBlank(gbvVisitAction.getSubTitle())) {
 
-            if (sbcVisitAction.isEnabled()) {
+            if (gbvVisitAction.isEnabled()) {
                 holder.descriptionText.setVisibility(View.VISIBLE);
                 holder.invalidText.setVisibility(View.GONE);
-                holder.descriptionText.setText(sbcVisitAction.getSubTitle());
+                holder.descriptionText.setText(gbvVisitAction.getSubTitle());
 
-                boolean isOverdue = sbcVisitAction.getScheduleStatus() == BaseGbvVisitAction.ScheduleStatus.OVERDUE &&
-                        sbcVisitAction.isEnabled();
+                boolean isOverdue = gbvVisitAction.getScheduleStatus() == BaseGbvVisitAction.ScheduleStatus.OVERDUE &&
+                        gbvVisitAction.isEnabled();
 
                 holder.descriptionText.setTextColor(
                         isOverdue ? context.getResources().getColor(R.color.alert_urgent_red) :
@@ -100,13 +100,13 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
             } else {
                 holder.descriptionText.setVisibility(View.GONE);
                 holder.invalidText.setVisibility(View.VISIBLE);
-                holder.invalidText.setText(Html.fromHtml("<i>" + sbcVisitAction.getDisabledMessage() + "</i>"));
+                holder.invalidText.setText(Html.fromHtml("<i>" + gbvVisitAction.getDisabledMessage() + "</i>"));
             }
         } else {
             holder.descriptionText.setVisibility(View.GONE);
         }
 
-        int color_res = getCircleColor(sbcVisitAction);
+        int color_res = getCircleColor(gbvVisitAction);
 
         holder.circleImageView.setCircleBackgroundColor(context.getResources().getColor(color_res));
         holder.circleImageView.setImageResource(R.drawable.ic_checked);
@@ -118,17 +118,17 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
             holder.circleImageView.setBorderColor(context.getResources().getColor(color_res));
         }
 
-        bindClickListener(holder.getView(), sbcVisitAction);
+        bindClickListener(holder.getView(), gbvVisitAction);
     }
 
-    private int getCircleColor(BaseGbvVisitAction sbcVisitAction) {
+    private int getCircleColor(BaseGbvVisitAction gbvVisitAction) {
 
         int color_res;
-        boolean valid = sbcVisitAction.isValid() && sbcVisitAction.isEnabled();
+        boolean valid = gbvVisitAction.isValid() && gbvVisitAction.isEnabled();
         if (!valid)
             return R.color.transparent_gray;
 
-        switch (sbcVisitAction.getActionStatus()) {
+        switch (gbvVisitAction.getActionStatus()) {
             case PENDING:
                 color_res = R.color.transparent_gray;
                 break;
@@ -145,17 +145,17 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
         return color_res;
     }
 
-    private void bindClickListener(View view, final BaseGbvVisitAction pmtctHomeVisitAction) {
-        if (!pmtctHomeVisitAction.isEnabled() || !pmtctHomeVisitAction.isValid()) {
+    private void bindClickListener(View view, final BaseGbvVisitAction gbvVisitAction) {
+        if (!gbvVisitAction.isEnabled() || !gbvVisitAction.isValid()) {
             view.setOnClickListener(null);
             return;
         }
 
         view.setOnClickListener(v -> {
-            if (StringUtils.isNotBlank(pmtctHomeVisitAction.getFormName())) {
-                visitContractView.startForm(pmtctHomeVisitAction);
+            if (StringUtils.isNotBlank(gbvVisitAction.getFormName())) {
+                visitContractView.startForm(gbvVisitAction);
             } else {
-                visitContractView.startFragment(pmtctHomeVisitAction);
+                visitContractView.startFragment(gbvVisitAction);
             }
             visitContractView.redrawVisitUI();
         });
@@ -164,7 +164,7 @@ public class BaseGbvVisitAdapter extends RecyclerView.Adapter<BaseGbvVisitAdapte
     @Override
     public int getItemCount() {
         int count = 0;
-        for (Map.Entry<String, BaseGbvVisitAction> entry : pmtctHomeVisitActionList.entrySet()) {
+        for (Map.Entry<String, BaseGbvVisitAction> entry : gbvVisitActionList.entrySet()) {
             if (entry.getValue().isValid())
                 count++;
         }

@@ -128,7 +128,7 @@ public class GbvRegisterProvider implements RecyclerViewProvider<GbvRegisterProv
 
     @Override
     public RegisterViewHolder createViewHolder(ViewGroup parent) {
-        View view = inflater.inflate(R.layout.sbc_register_list_row, parent, false);
+        View view = inflater.inflate(R.layout.gbv_register_list_row, parent, false);
         return new RegisterViewHolder(view);
     }
 

@@ -127,16 +127,16 @@ public class GbvUtil {
         return R.mipmap.ic_member;
     }
 
-    public static class CloseSbcMemberFromRegister extends AsyncTask<Void, Void, Void> {
+    public static class CloseGbvMemberFromRegister extends AsyncTask<Void, Void, Void> {
         private final String baseEntityId;
 
-        public CloseSbcMemberFromRegister(String baseEntityId) {
+        public CloseGbvMemberFromRegister(String baseEntityId) {
             this.baseEntityId = baseEntityId;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            GbvDao.closeSbcMemberFromRegister(baseEntityId);
+            GbvDao.closeGbvMemberFromRegister(baseEntityId);
             return null;
         }
 

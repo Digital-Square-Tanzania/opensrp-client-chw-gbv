@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.activity;
+package org.smartregister.chw.gbv_sample.activity;
 
 import com.vijay.jsonwizard.activities.JsonWizardFormActivity;
 

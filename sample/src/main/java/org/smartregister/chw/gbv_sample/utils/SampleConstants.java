@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.utils;
+package org.smartregister.chw.gbv_sample.utils;
 
 public class SampleConstants {
 

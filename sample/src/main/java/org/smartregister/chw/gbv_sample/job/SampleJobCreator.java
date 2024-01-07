@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.job;
+package org.smartregister.chw.gbv_sample.job;
 
 
 import androidx.annotation.NonNull;

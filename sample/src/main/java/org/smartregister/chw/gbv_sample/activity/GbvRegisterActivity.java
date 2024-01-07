@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.activity;
+package org.smartregister.chw.gbv_sample.activity;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -10,10 +10,10 @@ import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONObject;
-import org.smartregister.chw.sbc_sample.R;
+import org.smartregister.chw.gbv_sample.R;
 import org.smartregister.chw.gbv.activity.BaseGbvRegisterActivity;
-import org.smartregister.chw.sbc_sample.fragment.GbvRegisterFragment;
-import org.smartregister.chw.sbc_sample.utils.JsonFormUtils;
+import org.smartregister.chw.gbv_sample.fragment.GbvRegisterFragment;
+import org.smartregister.chw.gbv_sample.utils.JsonFormUtils;
 import org.smartregister.view.fragment.BaseRegisterFragment;
 
 public class GbvRegisterActivity extends BaseGbvRegisterActivity {

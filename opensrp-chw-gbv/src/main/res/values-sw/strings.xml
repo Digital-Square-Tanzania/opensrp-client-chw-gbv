@@ -13,8 +13,8 @@
     <string name="record_gbv">Rekodi ufuatiliaji wa GBV/VAC</string>
     <string name="return_to_previous_gbv_clients_page">Rudi kwenye wateja wote wa GBV/VAC</string>
     <string name="last_visit_40_days_ago">Tembeleo la mwisho %1$s uliyopita</string>
-    <string name="view_sbc_followp_history">Angalia historia ya huduma</string>
-    <string name="sbc_followup_history">Historia ya huduma</string>
+    <string name="view_gbv_followup_history">Angalia historia ya huduma</string>
+    <string name="gbv_followup_history">Historia ya huduma</string>
     <string name="call_no_number_provided">(Hakuna namba iliyotolewa)</string>
     <string name="family_has_nothing_due">Muda wa huduma kwenye kaya haujafika</string>
     <string name="go_to_family_s_profile">Rudi kwenye taarifa ya kaya</string>
@@ -25,9 +25,9 @@
     <string name="vaccine_service_upcoming"><![CDATA[%1$s <font color=#7f7f7f>inakaribia (%2$s)</font></b>]]></string>
     <string name="vaccine_service_overdue"><![CDATA[%1$s <font color=#f04646>muda umepita (%2$s)</font></b>]]></string>
     <string name="vaccine_service_due"><![CDATA[%1$s <font color=#000000>imefika (%2$s)</font></b>]]></string>
-    <string name="call_sbc_client">Mteja wa Malaria</string>
+    <string name="call_gbv_client">Mteja wa Malaria</string>
     <string name="head_of_family">Mkuu wa kaya</string>
-    <string name="sbc_client">Mteja wa malaria</string>
+    <string name="gbv_client">Mteja wa malaria</string>
     <string name="copy_to_clipboard">Nakili namba ya simu</string>
     <string name="copied_phone_number">Namba ya simu imenakiliwa</string>
     <string name="call">Piga simu</string>

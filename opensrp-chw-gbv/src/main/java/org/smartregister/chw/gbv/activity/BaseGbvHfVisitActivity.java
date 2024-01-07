@@ -66,7 +66,7 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base_sbc_visit);
+        setContentView(R.layout.activity_base_gbv_visit);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             isEditMode = getIntent().getBooleanExtra(Constants.ACTIVITY_PAYLOAD.EDIT_MODE, false);
@@ -121,16 +121,52 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
     public void initializeActions(LinkedHashMap<String, BaseGbvVisitAction> map) {
         actionList.clear();
         //Necessary evil to rearrange the actions according to a specific arrangement
-        if (map.containsKey(getString(R.string.sbc_visit_action_title_hiv_status))) {
-            actionList.put(getString(R.string.sbc_visit_action_title_hiv_status), map.get(getString(R.string.sbc_visit_action_title_hiv_status)));
-        }
-
         if (map.containsKey(getString(R.string.gbv_visit_type_action_title))) {
             actionList.put(getString(R.string.gbv_visit_type_action_title), map.get(getString(R.string.gbv_visit_type_action_title)));
         }
 
         if (map.containsKey(getString(R.string.gbv_consent_action_title))) {
             actionList.put(getString(R.string.gbv_consent_action_title), map.get(getString(R.string.gbv_consent_action_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_consent_followup_action_title))) {
+            actionList.put(getString(R.string.gbv_consent_followup_action_title), map.get(getString(R.string.gbv_consent_followup_action_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_history_collection_title))) {
+            actionList.put(getString(R.string.gbv_history_collection_title), map.get(getString(R.string.gbv_history_collection_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_medical_examination_title))) {
+            actionList.put(getString(R.string.gbv_medical_examination_title), map.get(getString(R.string.gbv_medical_examination_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_physical_examination_title))) {
+            actionList.put(getString(R.string.gbv_physical_examination_title), map.get(getString(R.string.gbv_physical_examination_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_forensic_examination_title))) {
+            actionList.put(getString(R.string.gbv_forensic_examination_title), map.get(getString(R.string.gbv_forensic_examination_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_lab_investigation_title))) {
+            actionList.put(getString(R.string.gbv_lab_investigation_title), map.get(getString(R.string.gbv_lab_investigation_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_education_and_counselling_title))) {
+            actionList.put(getString(R.string.gbv_education_and_counselling_title), map.get(getString(R.string.gbv_education_and_counselling_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_safety_plan_title))) {
+            actionList.put(getString(R.string.gbv_safety_plan_title), map.get(getString(R.string.gbv_safety_plan_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_linkage_title))) {
+            actionList.put(getString(R.string.gbv_linkage_title), map.get(getString(R.string.gbv_linkage_title)));
+        }
+
+        if (map.containsKey(getString(R.string.gbv_next_appointment_date_title))) {
+            actionList.put(getString(R.string.gbv_next_appointment_date_title), map.get(getString(R.string.gbv_next_appointment_date_title)));
         }
         //====================End of Necessary evil ====================================
 
@@ -199,21 +235,21 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
     }
 
     @Override
-    public void startForm(BaseGbvVisitAction sbcVisitAction) {
-        current_action = sbcVisitAction.getTitle();
+    public void startForm(BaseGbvVisitAction baseGbvVisitAction) {
+        current_action = baseGbvVisitAction.getTitle();
 
-        if (StringUtils.isNotBlank(sbcVisitAction.getJsonPayload())) {
+        if (StringUtils.isNotBlank(baseGbvVisitAction.getJsonPayload())) {
             try {
-                JSONObject jsonObject = new JSONObject(sbcVisitAction.getJsonPayload());
+                JSONObject jsonObject = new JSONObject(baseGbvVisitAction.getJsonPayload());
                 startFormActivity(jsonObject);
             } catch (Exception e) {
                 Timber.e(e);
                 String locationId = GbvLibrary.getInstance().context().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
-                presenter().startForm(sbcVisitAction.getFormName(), memberObject.getBaseEntityId(), locationId);
+                presenter().startForm(baseGbvVisitAction.getFormName(), memberObject.getBaseEntityId(), locationId);
             }
         } else {
             String locationId = GbvLibrary.getInstance().context().allSharedPreferences().getPreference(AllConstants.CURRENT_LOCATION_ID);
-            presenter().startForm(sbcVisitAction.getFormName(), memberObject.getBaseEntityId(), locationId);
+            presenter().startForm(baseGbvVisitAction.getFormName(), memberObject.getBaseEntityId(), locationId);
         }
     }
 
@@ -230,11 +266,11 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
     }
 
     @Override
-    public void startFragment(BaseGbvVisitAction pmtctHomeVisitAction) {
-        current_action = pmtctHomeVisitAction.getTitle();
+    public void startFragment(BaseGbvVisitAction baseGbvVisitAction) {
+        current_action = baseGbvVisitAction.getTitle();
 
-        if (pmtctHomeVisitAction.getDestinationFragment() != null)
-            pmtctHomeVisitAction.getDestinationFragment().show(getSupportFragmentManager(), current_action);
+        if (baseGbvVisitAction.getDestinationFragment() != null)
+            baseGbvVisitAction.getDestinationFragment().show(getSupportFragmentManager(), current_action);
 
     }
 
@@ -271,7 +307,7 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
 
 
     @Override
-    public Map<String, BaseGbvVisitAction> getPmtctHomeVisitActions() {
+    public Map<String, BaseGbvVisitAction> getBaseGbvVisitActions() {
         return actionList;
     }
 
@@ -299,9 +335,9 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
 
     @Override
     public void onDialogOptionUpdated(String jsonString) {
-        BaseGbvVisitAction pmtctHomeVisitAction = actionList.get(current_action);
-        if (pmtctHomeVisitAction != null) {
-            pmtctHomeVisitAction.setJsonPayload(jsonString);
+        BaseGbvVisitAction baseGbvVisitAction = actionList.get(current_action);
+        if (baseGbvVisitAction != null) {
+            baseGbvVisitAction.setJsonPayload(jsonString);
         }
 
         if (mAdapter != null) {
@@ -321,9 +357,9 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
             if (resultCode == Activity.RESULT_OK) {
                 try {
                     String jsonString = data.getStringExtra(Constants.JSON_FORM_EXTRA.JSON);
-                    BaseGbvVisitAction sbcVisitAction = actionList.get(current_action);
-                    if (sbcVisitAction != null) {
-                        sbcVisitAction.setJsonPayload(jsonString);
+                    BaseGbvVisitAction baseGbvVisitAction = actionList.get(current_action);
+                    if (baseGbvVisitAction != null) {
+                        baseGbvVisitAction.setJsonPayload(jsonString);
                     }
                 } catch (Exception e) {
                     Timber.e(e);
@@ -331,9 +367,9 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
                 }
             } else {
 
-                BaseGbvVisitAction pmtctHomeVisitAction = actionList.get(current_action);
-                if (pmtctHomeVisitAction != null)
-                    pmtctHomeVisitAction.evaluateStatus();
+                BaseGbvVisitAction baseGbvVisitAction = actionList.get(current_action);
+                if (baseGbvVisitAction != null)
+                    baseGbvVisitAction.evaluateStatus();
             }
 
         } else {

@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.activity;
+package org.smartregister.chw.gbv_sample.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
-import org.smartregister.chw.sbc_sample.R;
+import org.smartregister.chw.gbv_sample.R;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.view.activity.SecuredActivity;
@@ -24,7 +24,7 @@ public class EntryActivity extends SecuredActivity implements View.OnClickListen
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.sbc_activity).setOnClickListener(this);
+        findViewById(R.id.gbv_activity).setOnClickListener(this);
         findViewById(R.id.gbv_community_visit).setOnClickListener(this);
         findViewById(R.id.gbv_hf_profile).setOnClickListener(this);
     }
@@ -42,7 +42,7 @@ public class EntryActivity extends SecuredActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sbc_activity:
+            case R.id.gbv_activity:
                 startActivity(new Intent(this, GbvRegisterActivity.class));
                 break;
             case R.id.gbv_community_visit:

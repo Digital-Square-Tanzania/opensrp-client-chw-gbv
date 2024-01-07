@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.fragment;
+package org.smartregister.chw.gbv_sample.fragment;
 
 
 import org.smartregister.chw.gbv.fragment.BaseGbvRegisterFragment;

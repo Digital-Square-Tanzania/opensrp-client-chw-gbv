@@ -1,8 +1,8 @@
-package org.smartregister.chw.sbc_sample.interactor;
+package org.smartregister.chw.gbv_sample.interactor;
 
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.interactor.BaseGbvHfVisitInteractor;
-import org.smartregister.chw.sbc_sample.activity.EntryActivity;
+import org.smartregister.chw.gbv_sample.activity.EntryActivity;
 
 public class GbvHfVisitInteractor extends BaseGbvHfVisitInteractor {
     @Override

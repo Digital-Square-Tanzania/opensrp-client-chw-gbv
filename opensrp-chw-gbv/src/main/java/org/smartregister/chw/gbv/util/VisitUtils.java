@@ -45,7 +45,7 @@ public class VisitUtils {
 
         for (Visit v : visits) {
 
-            if (v.getVisitType().equalsIgnoreCase(Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT)) {
+            if (v.getVisitType().equalsIgnoreCase(Constants.EVENT_TYPE.GBV_FOLLOW_UP_VISIT)) {
                 try {
                     visitList.add(v);
                 } catch (Exception e) {
@@ -63,7 +63,7 @@ public class VisitUtils {
 
     public static List<Visit> getVisits(String memberID, String... eventTypes) {
 
-        List<Visit> visits = (eventTypes != null && eventTypes.length > 0) ? getVisitsOnly(memberID, eventTypes[0]) : getVisitsOnly(memberID, Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT);
+        List<Visit> visits = (eventTypes != null && eventTypes.length > 0) ? getVisitsOnly(memberID, eventTypes[0]) : getVisitsOnly(memberID, Constants.EVENT_TYPE.GBV_FOLLOW_UP_VISIT);
 
         return visits;
     }

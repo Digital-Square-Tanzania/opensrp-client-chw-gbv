@@ -110,7 +110,7 @@ public class BaseGbvRegisterActivity extends BaseRegisterActivity implements Gbv
 
     @Override
     public List<String> getViewIdentifiers() {
-        return Arrays.asList(Constants.CONFIGURATION.SBC_REGISTRATION_CONFIGURATION);
+        return Arrays.asList(Constants.CONFIGURATION.GBV_REGISTRATION_CONFIGURATION);
     }
 
     /**

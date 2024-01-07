@@ -1,4 +1,4 @@
-package org.smartregister.chw.sbc_sample.utils;
+package org.smartregister.chw.gbv_sample.utils;
 
 public class JsonFormUtils {
     public static final int REQUEST_CODE_GET_JSON = 2244;

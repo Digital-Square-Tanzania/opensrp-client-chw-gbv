@@ -16,8 +16,8 @@
     <string name="record_gbv_home_visit">Record GBV/VAC Community Visit</string>
     <string name="return_to_previous_gbv_clients_page">Return all GBV/VAC Clients</string>
     <string name="last_visit_40_days_ago">Last visit %1$s ago</string>
-    <string name="view_sbc_followp_history">View followup history</string>
-    <string name="sbc_followup_history">Followup History</string>
+    <string name="view_gbv_followup_history">View followup history</string>
+    <string name="gbv_followup_history">Followup History</string>
     <string name="call_no_number_provided">(no number provided)</string>
     <string name="family_has_nothing_due">Family has nothing due</string>
     <string name="go_to_family_s_profile">Go to family\'s profile</string>
@@ -28,9 +28,9 @@
     <string name="vaccine_service_upcoming"><![CDATA[%1$s <font color=#7f7f7f>upcoming (%2$s)</font></b>]]></string>
     <string name="vaccine_service_overdue"><![CDATA[%1$s <font color=#f04646>overdue (%2$s)</font></b>]]></string>
     <string name="vaccine_service_due"><![CDATA[%1$s <font color=#000000>due (%2$s)</font></b>]]></string>
-    <string name="call_sbc_client">SBC Client</string>
+    <string name="call_gbv_client">GBV Survivor</string>
     <string name="head_of_family">Head of family</string>
-    <string name="sbc_client">SBC Client</string>
+    <string name="gbv_client">GBV Survivor</string>
     <string name="copy_to_clipboard">Copy to clipboard</string>
     <string name="copied_phone_number">PhoneNumber copied to clipboard</string>
     <string name="call">Call</string>
@@ -53,7 +53,6 @@
     <string name="gbv_visit">GBV Visit</string>
     <string name="error_unable_save_home_visit">unable to save home visit</string>
     <string name="optional">optional</string>
-    <string name="sbc_visit_action_title_hiv_status">HIV Status</string>
     <string name="gbv_visit_type_action_title">Visit Type</string>
     <string name="gbv_consent_action_title">Consent</string>
     <string name="gbv_consent_followup_action_title">Consent Followup</string>

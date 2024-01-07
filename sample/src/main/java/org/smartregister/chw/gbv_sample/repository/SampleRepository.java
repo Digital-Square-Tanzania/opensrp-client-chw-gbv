@@ -1,13 +1,13 @@
-package org.smartregister.chw.sbc_sample.repository;
+package org.smartregister.chw.gbv_sample.repository;
 
 import android.content.Context;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.smartregister.AllConstants;
-import org.smartregister.chw.sbc_sample.BuildConfig;
+import org.smartregister.chw.gbv_sample.BuildConfig;
 import org.smartregister.chw.gbv.GbvLibrary;
-import org.smartregister.chw.sbc_sample.application.SampleApplication;
+import org.smartregister.chw.gbv_sample.application.SampleApplication;
 import org.smartregister.configurableviews.repository.ConfigurableViewsRepository;
 import org.smartregister.repository.EventClientRepository;
 import org.smartregister.repository.Repository;

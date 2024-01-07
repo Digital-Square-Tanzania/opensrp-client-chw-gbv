@@ -9,7 +9,7 @@
     android:paddingBottom="@dimen/call_widget_padding_bottom">
 
     <ImageView
-        android:id="@+id/sbc_call_close"
+        android:id="@+id/gbv_call_close"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_gravity="right"
@@ -37,14 +37,14 @@
             android:textStyle="normal" />
 
         <LinearLayout
-            android:id="@+id/sbc_layout_family_head"
+            android:id="@+id/gbv_layout_family_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/sbc_call_head_name"
+                android:id="@+id/gbv_call_head_name"
                 style="@style/CustomFontTextViewStyle.ClientList.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:textStyle="normal" />
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/sbc_call_head_phone"
+                android:id="@+id/gbv_call_head_phone"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,14 +78,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_sbc_client"
+            android:id="@+id/layout_gbv_client"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/call_sbc_client_name"
+                android:id="@+id/call_gbv_client_name"
                 style="@style/CustomFontTextViewStyle.ClientList.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,18 +96,18 @@
                 android:textStyle="normal" />
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/call_sbc_client_title"
+                android:id="@+id/call_gbv_client_title"
                 style="@style/CustomFontTextViewStyle.ClientList.Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="@string/sbc_client"
+                android:text="@string/gbv_client"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/call_widget_font3"
                 android:textStyle="normal" />
 
             <org.smartregister.view.customcontrols.CustomFontTextView
-                android:id="@+id/call_sbc_client_phone"
+                android:id="@+id/call_gbv_client_phone"
                 style="@style/CustomFontTextViewStyle.ClientList.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
