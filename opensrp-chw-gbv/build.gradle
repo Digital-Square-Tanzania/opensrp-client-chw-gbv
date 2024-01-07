@@ -16,7 +16,7 @@ plugins {
     id 'maven-publish'
 }
 
-description = 'OpenSRP CHW SBC library'
+description = 'OpenSRP CHW GBV library'
 
 jacoco {
     toolVersion = "0.8.10"
@@ -104,7 +104,7 @@ publishing {
              ** Replace GITHUB_USERID with your/organisation Github userID
              ** and REPOSITORY with the repository name on GitHub
              */
-            url = uri("https://maven.pkg.github.com/Digital-Square-Tanzania/opensrp-client-chw-sbc")
+            url = uri("https://maven.pkg.github.com/AbtPS3/opensrp-client-chw-gbv")
             credentials {
                 /** Create github.properties in root project folder file with
                  ** gpr.usr=GITHUB_USER_ID & gpr.key=PERSONAL_ACCESS_TOKEN
@@ -121,7 +121,7 @@ publishing {
             groupId 'org.smartregister' // Library groupID
             artifactId getArtificatId()
             version getVersionName()
-            artifact("$buildDir/outputs/aar/opensrp-chw-sbc-release.aar")
+            artifact("$buildDir/outputs/aar/opensrp-chw-gbv-release.aar")
 
             //This is to carter for transitive dependencies within this library
             pom.withXml {
