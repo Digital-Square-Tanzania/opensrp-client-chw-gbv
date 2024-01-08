@@ -19,8 +19,8 @@ public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getContext();
 
-        assertEquals("org.smartregister.malaria", appContext.getPackageName());
+        assertEquals("org.smartregister.chw.gbv_sample.test", appContext.getPackageName());
     }
 }
