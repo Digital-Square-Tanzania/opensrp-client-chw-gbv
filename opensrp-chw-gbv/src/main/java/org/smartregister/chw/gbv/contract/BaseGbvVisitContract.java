@@ -17,7 +17,7 @@ public interface BaseGbvVisitContract {
 
         Presenter presenter();
 
-        Form getFormConfig();
+        Form getFormConfig(JSONObject jsonForm);
 
         void startForm(BaseGbvVisitAction baseGbvVisitAction);
 

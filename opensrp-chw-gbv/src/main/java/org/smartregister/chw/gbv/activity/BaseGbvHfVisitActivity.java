@@ -1,5 +1,7 @@
 package org.smartregister.chw.gbv.activity;
 
+import static com.vijay.jsonwizard.constants.JsonFormConstants.COUNT;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +22,7 @@ import com.vijay.jsonwizard.constants.JsonFormConstants;
 import com.vijay.jsonwizard.domain.Form;
 
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.AllConstants;
 import org.smartregister.chw.gbv.GbvLibrary;
@@ -171,7 +174,6 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
         //====================End of Necessary evil ====================================
 
 
-
         for (Map.Entry<String, BaseGbvVisitAction> entry : map.entrySet()) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 actionList.putIfAbsent(entry.getKey(), entry.getValue());
@@ -230,8 +232,18 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
     }
 
     @Override
-    public Form getFormConfig() {
-        return null;
+    public Form getFormConfig(JSONObject jsonObject) {
+        Form form = new Form();
+        try {
+            if (jsonObject.getInt(COUNT) > 1) {
+                form.setWizard(jsonObject.getInt(COUNT) > 1);
+                form.setName(jsonObject.getString("encounter_type"));
+            }
+        } catch (JSONException e) {
+            Timber.e(e);
+            form.setWizard(false);
+        }
+        return form;
     }
 
     @Override
@@ -258,8 +270,8 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
         Intent intent = new Intent(this, JsonFormActivity.class);
         intent.putExtra(Constants.JSON_FORM_EXTRA.JSON, jsonForm.toString());
 
-        if (getFormConfig() != null) {
-            intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, getFormConfig());
+        if (getFormConfig(jsonForm) != null) {
+            intent.putExtra(JsonFormConstants.JSON_FORM_KEY.FORM, getFormConfig(jsonForm));
         }
 
         startActivityForResult(intent, Constants.REQUEST_CODE_GET_JSON);
