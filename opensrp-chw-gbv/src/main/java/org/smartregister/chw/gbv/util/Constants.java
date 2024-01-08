@@ -55,6 +55,8 @@ public interface Constants {
         String GBV_NEXT_APPOINTMENT_DATE = "gbv_next_appointment_date";
 
         String GBV_HOME_VISIT = "gbv_home_visit";
+
+        String GBV_ENROLLMENT = "gbv_enrollment";
     }
 
     interface TABLES {
