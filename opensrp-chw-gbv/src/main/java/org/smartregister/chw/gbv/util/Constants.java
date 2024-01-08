@@ -68,10 +68,15 @@ public interface Constants {
 
     interface ACTIVITY_PAYLOAD {
         String BASE_ENTITY_ID = "BASE_ENTITY_ID";
+
         String FAMILY_BASE_ENTITY_ID = "FAMILY_BASE_ENTITY_ID";
+
         String ACTION = "ACTION";
+
         String GBV_FORM_NAME = "GBV_FORM_NAME";
+
         String EDIT_MODE = "editMode";
+
         String MEMBER_PROFILE_OBJECT = "MemberObject";
 
     }
