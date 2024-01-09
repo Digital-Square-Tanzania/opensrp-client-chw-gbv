@@ -67,5 +67,6 @@
     <string name="gbv_next_appointment_date_title">Next Appointment Date</string>
 
     <string name="gbv_registration">GBV/VAC Registration</string>
+    <string name="gbv_screening">GBV/VAC Screening</string>
 
 </resources>

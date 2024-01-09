@@ -57,6 +57,8 @@ public interface Constants {
         String GBV_HOME_VISIT = "gbv_home_visit";
 
         String GBV_ENROLLMENT = "gbv_enrollment";
+
+        String GBV_SCREENING = "gbv_screening";
     }
 
     interface TABLES {
