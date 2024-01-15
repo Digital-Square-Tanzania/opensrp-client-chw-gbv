@@ -2,9 +2,9 @@ package org.smartregister.chw.gbv.presenter;
 
 import org.json.JSONObject;
 import org.smartregister.chw.gbv.R;
-import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.domain.MemberObject;
+import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.util.JsonFormUtils;
 import org.smartregister.util.FormUtils;
 
@@ -54,7 +54,7 @@ public class BaseGbvVisitPresenter implements BaseGbvVisitContract.Presenter, Ba
     public void submitVisit() {
         if (view.get() != null) {
             view.get().displayProgressBar(true);
-            interactor.submitVisit(view.get().getEditMode(), memberObject.getBaseEntityId(), view.get().getPmtctHomeVisitActions(), this);
+            interactor.submitVisit(view.get().getEditMode(), memberObject.getBaseEntityId(), view.get().getBaseGbvVisitActions(), this);
         }
     }
 

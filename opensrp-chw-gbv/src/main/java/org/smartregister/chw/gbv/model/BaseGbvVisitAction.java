@@ -282,11 +282,11 @@ public class BaseGbvVisitAction {
         this.selectedOption = selectedOption;
     }
 
-    public GbvVisitActionHelper getSbcVisitActionHelper() {
+    public GbvVisitActionHelper getGbvVisitActionHelper() {
         return gbvVisitActionHelper;
     }
 
-    public void setSbcVisitActionHelper(GbvVisitActionHelper gbvVisitActionHelper) {
+    public void setGbvVisitActionHelper(GbvVisitActionHelper gbvVisitActionHelper) {
         this.gbvVisitActionHelper = gbvVisitActionHelper;
     }
 
@@ -297,8 +297,8 @@ public class BaseGbvVisitAction {
     public void evaluateStatus() {
         setActionStatus(computedStatus());
 
-        if (getSbcVisitActionHelper() != null) {
-            setActionStatus(getSbcVisitActionHelper().evaluateStatusOnPayload());
+        if (getGbvVisitActionHelper() != null) {
+            setActionStatus(getGbvVisitActionHelper().evaluateStatusOnPayload());
         }
     }
 

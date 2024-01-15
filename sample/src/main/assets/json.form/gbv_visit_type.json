@@ -190,6 +190,56 @@
             }
           }
         }
+      },
+      {
+        "key": "other_services",
+        "openmrs_entity_parent": "",
+        "openmrs_entity": "concept",
+        "openmrs_entity_id": "other_services",
+        "type": "check_box",
+        "combine_checkbox_option_values": "true",
+        "label": "Other Services the client has been linked to",
+        "label_text_style": "normal",
+        "text_color": "#C0C0C0",
+        "options": [
+          {
+            "key": "police_gender_and_children_desk",
+            "text": "Police gender and children desk",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "police_gender_and_children_desk"
+          },
+          {
+            "key": "police",
+            "text": "Police",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "police"
+          },
+          {
+            "key": "legal_aid",
+            "text": "Legal Aid",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "legal_aid"
+          },
+          {
+            "key": "social_welfare_officer",
+            "text": "Social welfare officer",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "social_welfare_officer"
+          },
+          {
+            "key": "other",
+            "text": "Other",
+            "openmrs_entity": "concept",
+            "openmrs_entity_id": "other"
+          }
+        ],
+        "relevance": {
+          "rules-engine": {
+            "ex-rules": {
+              "rules-file": "gbv_visit_type_relevance.yml"
+            }
+          }
+        }
       }
     ]
   }

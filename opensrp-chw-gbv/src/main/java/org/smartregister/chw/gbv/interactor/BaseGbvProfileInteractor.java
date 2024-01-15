@@ -25,7 +25,7 @@ public class BaseGbvProfileInteractor implements GbvProfileContract.Interactor {
     @Override
     public void refreshProfileInfo(MemberObject memberObject, GbvProfileContract.InteractorCallBack callback) {
         Runnable runnable = () -> appExecutors.mainThread().execute(() -> {
-            callback.refreshMedicalHistory(getVisit(Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT, memberObject) != null);
+            callback.refreshMedicalHistory(getVisit(Constants.EVENT_TYPE.GBV_FOLLOW_UP_VISIT, memberObject) != null);
         });
         appExecutors.diskIO().execute(runnable);
     }

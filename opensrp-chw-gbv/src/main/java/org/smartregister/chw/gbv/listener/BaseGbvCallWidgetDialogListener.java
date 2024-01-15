@@ -20,9 +20,9 @@ public class BaseGbvCallWidgetDialogListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.sbc_call_close) {
+        if (i == R.id.gbv_call_close) {
             callDialogFragment.dismiss();
-        } else if (i == R.id.sbc_call_head_phone) {
+        } else if (i == R.id.gbv_call_head_phone) {
             try {
                 String phoneNumber = (String) v.getTag();
                 GbvUtil.launchDialer(callDialogFragment.getActivity(), callDialogFragment, phoneNumber);
@@ -30,7 +30,7 @@ public class BaseGbvCallWidgetDialogListener implements View.OnClickListener {
             } catch (Exception e) {
                 Timber.e(e);
             }
-        } else if (i == R.id.call_sbc_client_phone) {
+        } else if (i == R.id.call_gbv_client_phone) {
             try {
                 String phoneNumber = (String) v.getTag();
                 GbvUtil.launchDialer(callDialogFragment.getActivity(), callDialogFragment, phoneNumber);

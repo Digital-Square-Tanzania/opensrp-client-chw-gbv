@@ -72,10 +72,10 @@ public class GbvJsonFormUtils extends org.smartregister.util.JsonFormUtils {
         String entityId = getString(jsonForm, ENTITY_ID);
         String encounter_type = jsonForm.optString(Constants.JSON_FORM_EXTRA.ENCOUNTER_TYPE);
 
-        if (Constants.EVENT_TYPE.SBC_REGISTRATION.equals(encounter_type)) {
-            encounter_type = Constants.TABLES.SBC_REGISTER;
-        } else if (Constants.EVENT_TYPE.SBC_FOLLOW_UP_VISIT.equals(encounter_type)) {
-            encounter_type = Constants.TABLES.SBC_FOLLOW_UP;
+        if (Constants.EVENT_TYPE.GBV_REGISTRATION.equals(encounter_type)) {
+            encounter_type = Constants.TABLES.GBV_REGISTER;
+        } else if (Constants.EVENT_TYPE.GBV_FOLLOW_UP_VISIT.equals(encounter_type)) {
+            encounter_type = Constants.TABLES.GBV_FOLLOW_UP;
         }
         return org.smartregister.util.JsonFormUtils.createEvent(fields, getJSONObject(jsonForm, METADATA), formTag(allSharedPreferences), entityId, getString(jsonForm, Constants.ENCOUNTER_TYPE), encounter_type);
     }

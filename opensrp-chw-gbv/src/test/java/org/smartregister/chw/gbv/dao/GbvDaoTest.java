@@ -30,7 +30,7 @@ public class GbvDaoTest extends GbvDao {
     @Test
     public void testIsRegisteredForMalaria() {
         Mockito.doReturn(database).when(repository).getReadableDatabase();
-        boolean registered = GbvDao.isRegisteredForSbc("12345");
+        boolean registered = GbvDao.isRegisteredForGbv("12345");
         Mockito.verify(database).rawQuery(Mockito.anyString(), Mockito.any());
         Assert.assertFalse(registered);
     }

@@ -12,3 +12,10 @@ priority: 1
 condition: "step1_referral_type.equals('health_facility')"
 actions:
   - "isRelevant = true"
+---
+name: step1_other_services
+description: relevance rule for other services
+priority: 1
+condition: "step1_referral_type.equals('other_services')"
+actions:
+  - "isRelevant = true"

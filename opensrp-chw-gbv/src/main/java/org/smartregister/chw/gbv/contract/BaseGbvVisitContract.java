@@ -5,8 +5,8 @@ import android.content.Context;
 import com.vijay.jsonwizard.domain.Form;
 
 import org.json.JSONObject;
-import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 import org.smartregister.chw.gbv.domain.MemberObject;
+import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -17,13 +17,13 @@ public interface BaseGbvVisitContract {
 
         Presenter presenter();
 
-        Form getFormConfig();
+        Form getFormConfig(JSONObject jsonForm);
 
-        void startForm(BaseGbvVisitAction pmtctHomeVisitAction);
+        void startForm(BaseGbvVisitAction baseGbvVisitAction);
 
         void startFormActivity(JSONObject jsonForm);
 
-        void startFragment(BaseGbvVisitAction pmtctHomeVisitAction);
+        void startFragment(BaseGbvVisitAction baseGbvVisitAction);
 
         void redrawHeader(MemberObject memberObject);
 
@@ -31,7 +31,7 @@ public interface BaseGbvVisitContract {
 
         void displayProgressBar(boolean state);
 
-        Map<String, BaseGbvVisitAction> getPmtctHomeVisitActions();
+        Map<String, BaseGbvVisitAction> getBaseGbvVisitActions();
 
         void close();
 
