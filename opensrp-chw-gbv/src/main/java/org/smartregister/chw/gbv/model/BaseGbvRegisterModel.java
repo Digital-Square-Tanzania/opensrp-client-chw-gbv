@@ -3,7 +3,6 @@ package org.smartregister.chw.gbv.model;
 import org.json.JSONObject;
 import org.smartregister.chw.gbv.contract.GbvRegisterContract;
 import org.smartregister.chw.gbv.dao.GbvDao;
-import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.util.GbvJsonFormUtils;
 
 public class BaseGbvRegisterModel implements GbvRegisterContract.Model {
@@ -14,9 +13,8 @@ public class BaseGbvRegisterModel implements GbvRegisterContract.Model {
 
 
         if (jsonObject.has("global")) {
-            MemberObject memberObject = GbvDao.getMember(entityId);
-            jsonObject.getJSONObject("global").put("age", memberObject.getAge());
-            jsonObject.getJSONObject("global").put("gender", memberObject.getGender());
+            jsonObject.getJSONObject("global").put("age", GbvDao.getClientAge(entityId));
+            jsonObject.getJSONObject("global").put("gender", GbvDao.getClientSex(entityId));
         }
 
         GbvJsonFormUtils.getRegistrationForm(jsonObject, entityId, currentLocationId);

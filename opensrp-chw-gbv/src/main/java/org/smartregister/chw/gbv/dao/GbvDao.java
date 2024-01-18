@@ -1,5 +1,7 @@
 package org.smartregister.chw.gbv.dao;
 
+import org.joda.time.DateTime;
+import org.joda.time.Period;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.smartregister.chw.gbv.GbvLibrary;
@@ -29,6 +31,36 @@ public class GbvDao extends AbstractDao {
         if (res == null || res.size() != 1) return false;
 
         return res.get(0) > 0;
+    }
+
+    public static int getClientAge(String baseEntityID) {
+        String sql = "SELECT  dob  FROM ec_family_member WHERE base_entity_id = '" + baseEntityID + "'";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "dob");
+
+        List<String> res = readData(sql, dataMap);
+        if (res == null || res.size() != 1) return 0;
+
+
+        int age;
+        try {
+            age = (new Period(new DateTime(res.get(0)), new DateTime())).getYears();
+        } catch (Exception e) {
+            Timber.e(e);
+            return 0;
+        }
+        return age;
+    }
+
+    public static String getClientSex(String baseEntityID) {
+        String sql = "SELECT  gender  FROM ec_family_member WHERE base_entity_id = '" + baseEntityID + "'";
+
+        DataMap<String> dataMap = cursor -> getCursorValue(cursor, "gender");
+
+        List<String> res = readData(sql, dataMap);
+        if (res == null || res.size() != 1) return null;
+
+        return res.get(0);
     }
 
     public static MemberObject getMember(String baseEntityID) {
