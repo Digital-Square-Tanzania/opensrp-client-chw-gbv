@@ -28,11 +28,25 @@ public class GbvDaoTest extends GbvDao {
     }
 
     @Test
-    public void testIsRegisteredForMalaria() {
+    public void testIsRegisteredForGbv() {
         Mockito.doReturn(database).when(repository).getReadableDatabase();
         boolean registered = GbvDao.isRegisteredForGbv("12345");
-        Mockito.verify(database).rawQuery(Mockito.anyString(), Mockito.any());
+        Mockito.verify(database).rawQuery(Mockito.contains("SELECT count(p.base_entity_id) count FROM ec_gbv_register p WHERE p.base_entity_id = '12345' AND p.is_closed = 0"), Mockito.any());
         Assert.assertFalse(registered);
+    }
+
+    @Test
+    public void testGetClientAge() {
+        Mockito.doReturn(database).when(repository).getReadableDatabase();
+        GbvDao.getClientAge("12345");
+        Mockito.verify(database).rawQuery(Mockito.contains("SELECT  dob  FROM ec_family_member WHERE base_entity_id = '12345'"), Mockito.any());
+    }
+
+    @Test
+    public void testGetClientSex() {
+        Mockito.doReturn(database).when(repository).getReadableDatabase();
+        GbvDao.getClientSex("12345");
+        Mockito.verify(database).rawQuery(Mockito.contains("SELECT  gender  FROM ec_family_member WHERE base_entity_id = '12345'"), Mockito.any());
     }
 }
 
