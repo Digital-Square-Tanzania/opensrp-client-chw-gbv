@@ -156,6 +156,10 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
             actionList.put(getString(R.string.gbv_lab_investigation_title), map.get(getString(R.string.gbv_lab_investigation_title)));
         }
 
+        if (map.containsKey(getString(R.string.gbv_provide_treatment_title))) {
+            actionList.put(getString(R.string.gbv_provide_treatment_title), map.get(getString(R.string.gbv_provide_treatment_title)));
+        }
+
         if (map.containsKey(getString(R.string.gbv_education_and_counselling_title))) {
             actionList.put(getString(R.string.gbv_education_and_counselling_title), map.get(getString(R.string.gbv_education_and_counselling_title)));
         }

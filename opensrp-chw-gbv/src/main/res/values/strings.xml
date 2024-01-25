@@ -61,6 +61,7 @@
     <string name="gbv_physical_examination_title">Physical Examination</string>
     <string name="gbv_forensic_examination_title">Forensic Examination</string>
     <string name="gbv_lab_investigation_title">Lab Investigation</string>
+    <string name="gbv_provide_treatment_title">Provide Treatment</string>
     <string name="gbv_education_and_counselling_title">Education and Counselling</string>
     <string name="gbv_safety_plan_title">Safety Plan</string>
     <string name="gbv_linkage_title">Linkage</string>
