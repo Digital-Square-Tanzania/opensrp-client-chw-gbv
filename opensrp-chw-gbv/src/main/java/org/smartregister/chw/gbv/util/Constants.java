@@ -46,6 +46,8 @@ public interface Constants {
 
         String GBV_LAB_INVESTIGATION_FORM = "gbv_lab_investigation";
 
+        String GBV_PROVIDE_TREATMENT_FORM = "gbv_provide_treatment";
+
         String GBV_EDUCATION_AND_COUNSELLING_FORM = "gbv_education_and_counselling";
 
         String GBV_SAFETY_PLAN = "gbv_safety_plan";

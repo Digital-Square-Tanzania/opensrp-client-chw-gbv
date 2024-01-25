@@ -23,6 +23,7 @@ import org.smartregister.chw.gbv.actionhelper.LinkageActionHelper;
 import org.smartregister.chw.gbv.actionhelper.MedicalExaminationActionHelper;
 import org.smartregister.chw.gbv.actionhelper.NextAppointmentDateActionHelper;
 import org.smartregister.chw.gbv.actionhelper.PhysicalExaminationActionHelper;
+import org.smartregister.chw.gbv.actionhelper.ProvideTreatmentActionHelper;
 import org.smartregister.chw.gbv.actionhelper.SafetyPlanActionHelper;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.dao.GbvDao;
@@ -215,6 +216,16 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         String actionName = mContext.getString(R.string.gbv_lab_investigation_title);
 
         BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_LAB_INVESTIGATION_FORM).build();
+
+        actionList.put(actionName, action);
+    }
+
+    protected void createProvideTreatmentAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
+        GbvVisitActionHelper actionHelper = new ProvideTreatmentActionHelper(memberObject);
+
+        String actionName = mContext.getString(R.string.gbv_provide_treatment_title);
+
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_PROVIDE_TREATMENT_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -507,6 +518,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                     createPhysicalExaminationAction(memberObject, details);
                     createForensicExaminationAction(memberObject, details);
                     createLabInvestigationAction(memberObject, details);
+                    createProvideTreatmentAction(memberObject, details);
                     createEducationAndCounsellingAction(memberObject, details);
                     createSafetyPlanAction(memberObject, details);
                     createLinkageAction(memberObject, details);
@@ -533,6 +545,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                     createPhysicalExaminationAction(memberObject, details);
                     createForensicExaminationAction(memberObject, details);
                     createLabInvestigationAction(memberObject, details);
+                    createProvideTreatmentAction(memberObject, details);
                     createEducationAndCounsellingAction(memberObject, details);
                     createSafetyPlanAction(memberObject, details);
                     createLinkageAction(memberObject, details);
@@ -546,6 +559,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                 actionList.remove(mContext.getString(R.string.gbv_physical_examination_title));
                 actionList.remove(mContext.getString(R.string.gbv_forensic_examination_title));
                 actionList.remove(mContext.getString(R.string.gbv_lab_investigation_title));
+                actionList.remove(mContext.getString(R.string.gbv_provide_treatment_title));
                 actionList.remove(mContext.getString(R.string.gbv_education_and_counselling_title));
                 actionList.remove(mContext.getString(R.string.gbv_safety_plan_title));
                 actionList.remove(mContext.getString(R.string.gbv_linkage_title));
