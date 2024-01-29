@@ -201,7 +201,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     protected void createForensicExaminationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = new ForensicExaminationActionHelper(memberObject);
+        GbvVisitActionHelper actionHelper = new MyForensicExaminationActionHelper(memberObject);
 
         String actionName = mContext.getString(R.string.gbv_forensic_examination_title);
 
@@ -517,7 +517,6 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                     createMedicalExaminationAction(memberObject, details);
                     createPhysicalExaminationAction(memberObject, details);
                     createForensicExaminationAction(memberObject, details);
-                    createLabInvestigationAction(memberObject, details);
                     createProvideTreatmentAction(memberObject, details);
                     createEducationAndCounsellingAction(memberObject, details);
                     createSafetyPlanAction(memberObject, details);
@@ -544,7 +543,6 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                     createMedicalExaminationAction(memberObject, details);
                     createPhysicalExaminationAction(memberObject, details);
                     createForensicExaminationAction(memberObject, details);
-                    createLabInvestigationAction(memberObject, details);
                     createProvideTreatmentAction(memberObject, details);
                     createEducationAndCounsellingAction(memberObject, details);
                     createSafetyPlanAction(memberObject, details);
@@ -565,6 +563,28 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                 actionList.remove(mContext.getString(R.string.gbv_linkage_title));
                 actionList.remove(mContext.getString(R.string.gbv_next_appointment_date_title));
             }
+            appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+        }
+    }
+
+    class MyForensicExaminationActionHelper extends ForensicExaminationActionHelper {
+
+        public MyForensicExaminationActionHelper(MemberObject memberObject) {
+            super(memberObject);
+        }
+
+        @Override
+        public void processForensicExamination(String doesTheClientNeedLabInvestigation) {
+            if (doesTheClientNeedLabInvestigation != null && doesTheClientNeedLabInvestigation.equalsIgnoreCase("yes")) {
+                try {
+                    createLabInvestigationAction(memberObject, details);
+                } catch (BaseGbvVisitAction.ValidationException e) {
+                    Timber.e(e);
+                }
+            } else {
+                actionList.remove(mContext.getString(R.string.gbv_lab_investigation_title));
+            }
+
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
         }
     }

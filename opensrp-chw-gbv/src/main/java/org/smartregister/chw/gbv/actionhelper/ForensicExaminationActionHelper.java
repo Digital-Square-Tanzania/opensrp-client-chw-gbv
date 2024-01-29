@@ -17,10 +17,12 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class ForensicExaminationActionHelper extends GbvVisitActionHelper {
+public abstract class ForensicExaminationActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
     private String bloodSpecimen;
+
+    private String doesTheClientNeedLabInvestigation;
 
     private JSONObject jsonForm;
 
@@ -63,10 +65,15 @@ public class ForensicExaminationActionHelper extends GbvVisitActionHelper {
         try {
             payload = new JSONObject(jsonPayload);
             bloodSpecimen = JsonFormUtils.getValue(payload, "blood_specimen");
+            doesTheClientNeedLabInvestigation = JsonFormUtils.getValue(payload, "does_the_client_need_lab_investigation");
         } catch (JSONException e) {
             Timber.d(e);
         }
+
+        processForensicExamination(doesTheClientNeedLabInvestigation);
     }
+
+    public abstract void processForensicExamination(String doesTheClientNeedLabInvestigation);
 
     @Override
     public String evaluateSubTitle() {
