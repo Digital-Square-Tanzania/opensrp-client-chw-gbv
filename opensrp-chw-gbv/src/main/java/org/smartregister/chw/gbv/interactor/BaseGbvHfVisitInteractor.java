@@ -247,7 +247,9 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_SAFETY_PLAN).build();
 
-        actionList.put(actionName, action);
+        if (memberObject.getAge() > 7) {
+            actionList.put(actionName, action);
+        }
     }
 
     protected void createLinkageAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
