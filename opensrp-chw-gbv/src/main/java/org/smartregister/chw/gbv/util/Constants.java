@@ -24,6 +24,8 @@ public interface Constants {
 
         String GBV_FOLLOW_UP_VISIT = "GBV Follow-up Visit";
 
+        String GBV_HOME_VISIT = "GBV Home Visit";
+
         String VOID_EVENT = "Void Event";
 
         String DELETE_EVENT = "Delete Event";
