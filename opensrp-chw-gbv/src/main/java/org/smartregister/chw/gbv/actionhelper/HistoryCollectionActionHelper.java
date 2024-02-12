@@ -17,10 +17,12 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class HistoryCollectionActionHelper extends GbvVisitActionHelper {
+public abstract class HistoryCollectionActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
     private String numberOfWitnesses;
+
+    private String currentPregnancyStatus;
 
     private JSONObject jsonForm;
 
@@ -63,10 +65,14 @@ public class HistoryCollectionActionHelper extends GbvVisitActionHelper {
         try {
             payload = new JSONObject(jsonPayload);
             numberOfWitnesses = JsonFormUtils.getValue(payload, "no_of_witnesses");
+            currentPregnancyStatus = JsonFormUtils.getValue(payload, "current_pregnancy_status");
+            processHistoryCollection(currentPregnancyStatus);
         } catch (JSONException e) {
             Timber.d(e);
         }
     }
+
+    public abstract void processHistoryCollection(String currentPregnancyStatus);
 
     @Override
     public String evaluateSubTitle() {

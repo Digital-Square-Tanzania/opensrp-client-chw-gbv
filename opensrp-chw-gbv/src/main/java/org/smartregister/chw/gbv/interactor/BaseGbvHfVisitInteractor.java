@@ -70,6 +70,8 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
     private MemberObject memberObject;
 
+    private boolean isPregnant = false;
+
     @VisibleForTesting
     public BaseGbvHfVisitInteractor(AppExecutors appExecutors, GbvLibrary GbvLibrary, ECSyncHelper syncHelper) {
         this.appExecutors = appExecutors;
@@ -171,7 +173,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     protected void createHistoryCollectionAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = new HistoryCollectionActionHelper(memberObject);
+        GbvVisitActionHelper actionHelper = new MyHistoryCollectionActionHelper(memberObject);
 
         String actionName = mContext.getString(R.string.gbv_history_collection_title);
 
@@ -588,6 +590,21 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
             }
 
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
+        }
+    }
+
+    class MyHistoryCollectionActionHelper extends HistoryCollectionActionHelper {
+
+        public MyHistoryCollectionActionHelper(MemberObject memberObject) {
+            super(memberObject);
+        }
+
+        @Override
+        public void processHistoryCollection(String currentPregnancyStatus) {
+            if (currentPregnancyStatus.equalsIgnoreCase("pregnant"))
+                isPregnant = true;
+            else
+                isPregnant = false;
         }
     }
 }
