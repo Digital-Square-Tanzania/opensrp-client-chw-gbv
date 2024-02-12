@@ -44,7 +44,7 @@ public class BaseGbvProfileInteractor implements GbvProfileContract.Interactor {
         appExecutors.diskIO().execute(runnable);
     }
 
-    private Visit getVisit(String eventType, MemberObject memberObject) {
+    protected Visit getVisit(String eventType, MemberObject memberObject) {
         try {
             return GbvLibrary.getInstance().visitRepository().getLatestVisit(memberObject.getBaseEntityId(), eventType);
         } catch (Exception e) {
