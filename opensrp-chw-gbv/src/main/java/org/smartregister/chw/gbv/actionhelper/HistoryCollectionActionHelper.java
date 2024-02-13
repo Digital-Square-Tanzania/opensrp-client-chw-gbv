@@ -24,6 +24,10 @@ public abstract class HistoryCollectionActionHelper extends GbvVisitActionHelper
 
     private String currentPregnancyStatus;
 
+    private String typeOfAssault;
+
+    private String hivStatus;
+
     private JSONObject jsonForm;
 
 
@@ -66,13 +70,15 @@ public abstract class HistoryCollectionActionHelper extends GbvVisitActionHelper
             payload = new JSONObject(jsonPayload);
             numberOfWitnesses = JsonFormUtils.getValue(payload, "no_of_witnesses");
             currentPregnancyStatus = JsonFormUtils.getValue(payload, "current_pregnancy_status");
-            processHistoryCollection(currentPregnancyStatus);
+            typeOfAssault = JsonFormUtils.getValue(payload, "type_of_assault");
+            hivStatus = JsonFormUtils.getValue(payload, "hiv_status");
+            processHistoryCollection(currentPregnancyStatus, typeOfAssault,hivStatus);
         } catch (JSONException e) {
             Timber.d(e);
         }
     }
 
-    public abstract void processHistoryCollection(String currentPregnancyStatus);
+    public abstract void processHistoryCollection(String currentPregnancyStatus, String typeOfAssault, String hivStatus);
 
     @Override
     public String evaluateSubTitle() {

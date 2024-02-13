@@ -70,7 +70,12 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
     private MemberObject memberObject;
 
-    private boolean isPregnant = false;
+    private String mCurrentPregnancyStatus;
+
+    private String mTypeOfAssault;
+
+    private String mHhivStatus;
+
 
     @VisibleForTesting
     public BaseGbvHfVisitInteractor(AppExecutors appExecutors, GbvLibrary GbvLibrary, ECSyncHelper syncHelper) {
@@ -213,7 +218,8 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     protected void createLabInvestigationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = new LabInvestigationActionHelper(memberObject);
+        GbvVisitActionHelper actionHelper = new LabInvestigationActionHelper(memberObject, mCurrentPregnancyStatus, mTypeOfAssault, mHhivStatus);
+
 
         String actionName = mContext.getString(R.string.gbv_lab_investigation_title);
 
@@ -600,11 +606,11 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
         }
 
         @Override
-        public void processHistoryCollection(String currentPregnancyStatus) {
-            if (currentPregnancyStatus.equalsIgnoreCase("pregnant"))
-                isPregnant = true;
-            else
-                isPregnant = false;
+        public void processHistoryCollection(String currentPregnancyStatus, String typeOfAssault, String hivStatus) {
+            mCurrentPregnancyStatus = currentPregnancyStatus;
+            mTypeOfAssault = typeOfAssault;
+            mHhivStatus = hivStatus;
+
         }
     }
 }

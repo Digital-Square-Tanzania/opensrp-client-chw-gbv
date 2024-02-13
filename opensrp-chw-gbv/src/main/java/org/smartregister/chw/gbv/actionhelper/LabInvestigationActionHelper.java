@@ -25,8 +25,18 @@ public class LabInvestigationActionHelper extends GbvVisitActionHelper {
     private JSONObject jsonForm;
 
 
-    public LabInvestigationActionHelper(MemberObject memberObject) {
+    private String currentPregnancyStatus;
+
+    private String typeOfAssault;
+
+    private String hivStatus;
+
+
+    public LabInvestigationActionHelper(MemberObject memberObject, String currentPregnancyStatus, String typeOfAssault, String hivStatus) {
         this.memberObject = memberObject;
+        this.currentPregnancyStatus = currentPregnancyStatus;
+        this.typeOfAssault = typeOfAssault;
+        this.hivStatus = hivStatus;
     }
 
     @Override
@@ -50,6 +60,9 @@ public class LabInvestigationActionHelper extends GbvVisitActionHelper {
             JSONObject global = jsonForm.getJSONObject(GLOBAL);
             global.put("age", memberObject.getAge());
             global.put("gender", memberObject.getGender());
+            global.put("currentPregnancyStatus", currentPregnancyStatus);
+            global.put("typeOfAssault", typeOfAssault);
+            global.put("hivStatus", hivStatus);
             return jsonForm.toString();
         } catch (JSONException e) {
             Timber.e(e);
