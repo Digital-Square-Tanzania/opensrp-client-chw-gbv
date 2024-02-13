@@ -17,7 +17,7 @@ import java.util.Map;
 
 import timber.log.Timber;
 
-public class LabInvestigationActionHelper extends GbvVisitActionHelper {
+public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
     private String hivTestResults;
@@ -75,11 +75,16 @@ public class LabInvestigationActionHelper extends GbvVisitActionHelper {
         JSONObject payload;
         try {
             payload = new JSONObject(jsonPayload);
+
             hivTestResults = JsonFormUtils.getValue(payload, "hiv_test_results");
+
+            processTestResults(JsonFormUtils.getValue(payload, "hepb_test_results"), JsonFormUtils.getValue(payload, "hiv_test_results"));
         } catch (JSONException e) {
             Timber.d(e);
         }
     }
+
+    public abstract void processTestResults(String hepbTestResults, String hivTestResults);
 
     @Override
     public String evaluateSubTitle() {

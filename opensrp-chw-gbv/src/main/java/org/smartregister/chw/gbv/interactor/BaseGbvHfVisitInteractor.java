@@ -1,6 +1,8 @@
 package org.smartregister.chw.gbv.interactor;
 
 
+import static org.smartregister.client.utils.constants.JsonFormConstants.GLOBAL;
+
 import android.content.Context;
 
 import androidx.annotation.VisibleForTesting;
@@ -9,6 +11,7 @@ import com.google.gson.Gson;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
+import org.json.JSONObject;
 import org.smartregister.chw.gbv.GbvLibrary;
 import org.smartregister.chw.gbv.R;
 import org.smartregister.chw.gbv.actionhelper.EducationAndCounsellingActionHelper;
@@ -218,7 +221,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     protected void createLabInvestigationAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = new LabInvestigationActionHelper(memberObject, mCurrentPregnancyStatus, mTypeOfAssault, mHhivStatus);
+        GbvVisitActionHelper actionHelper = new MyLabInvestigationActionHelper(memberObject, mCurrentPregnancyStatus, mTypeOfAssault, mHhivStatus);
 
 
         String actionName = mContext.getString(R.string.gbv_lab_investigation_title);
@@ -611,6 +614,56 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
             mTypeOfAssault = typeOfAssault;
             mHhivStatus = hivStatus;
 
+            if (actionList.get(mContext.getString(R.string.gbv_provide_treatment_title)) != null) {
+                BaseGbvVisitAction provideTreatmentAction = actionList.get(mContext.getString(R.string.gbv_provide_treatment_title));
+                String jsonPayloadString = provideTreatmentAction.getJsonPayload();
+
+                try {
+                    JSONObject jsonPayload = new JSONObject(jsonPayloadString);
+                    JSONObject global = jsonPayload.getJSONObject(GLOBAL);
+                    global.put("typeOfAssault", typeOfAssault);
+                    provideTreatmentAction.setJsonPayload(jsonPayload.toString());
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+
+            }
+
+        }
+    }
+
+    class MyLabInvestigationActionHelper extends LabInvestigationActionHelper {
+        public MyLabInvestigationActionHelper(MemberObject memberObject, String currentPregnancyStatus, String typeOfAssault, String hivStatus) {
+            super(memberObject, currentPregnancyStatus, typeOfAssault, hivStatus);
+        }
+
+        @Override
+        public void processTestResults(String hepbTestResults, String hivTestResults) {
+            if (actionList.get(mContext.getString(R.string.gbv_provide_treatment_title)) != null) {
+                BaseGbvVisitAction provideTreatmentAction = actionList.get(mContext.getString(R.string.gbv_provide_treatment_title));
+                String jsonPayloadString = provideTreatmentAction.getJsonPayload();
+                try {
+                    JSONObject jsonPayload = new JSONObject(jsonPayloadString);
+                    JSONObject global = jsonPayload.getJSONObject(GLOBAL);
+                    global.put("hepbTestResults", hepbTestResults);
+                    provideTreatmentAction.setJsonPayload(jsonPayload.toString());
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+            }
+
+            if (actionList.get(mContext.getString(R.string.gbv_education_and_counselling_title)) != null) {
+                BaseGbvVisitAction provideEducationAndCounsellingAction = actionList.get(mContext.getString(R.string.gbv_education_and_counselling_title));
+                String jsonPayloadString = provideEducationAndCounsellingAction.getJsonPayload();
+                try {
+                    JSONObject jsonPayload = new JSONObject(jsonPayloadString);
+                    JSONObject global = jsonPayload.getJSONObject(GLOBAL);
+                    global.put("hivTestResults", hivTestResults);
+                    provideEducationAndCounsellingAction.setJsonPayload(jsonPayload.toString());
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+            }
         }
     }
 }

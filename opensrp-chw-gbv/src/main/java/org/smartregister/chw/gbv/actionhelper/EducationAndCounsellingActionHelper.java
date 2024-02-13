@@ -50,6 +50,7 @@ public class EducationAndCounsellingActionHelper extends GbvVisitActionHelper {
             JSONObject global = jsonForm.getJSONObject(GLOBAL);
             global.put("age", memberObject.getAge());
             global.put("gender", memberObject.getGender());
+            global.put("hivTestResults", "null");
             return jsonForm.toString();
         } catch (JSONException e) {
             Timber.e(e);
