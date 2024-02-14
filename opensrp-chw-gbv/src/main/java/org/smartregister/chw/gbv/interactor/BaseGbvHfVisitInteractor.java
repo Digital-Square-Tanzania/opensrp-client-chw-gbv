@@ -614,6 +614,24 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
             mTypeOfAssault = typeOfAssault;
             mHhivStatus = hivStatus;
 
+            if (actionList.get(mContext.getString(R.string.gbv_lab_investigation_title)) != null) {
+                BaseGbvVisitAction labInvestigationAction = actionList.get(mContext.getString(R.string.gbv_lab_investigation_title));
+                String jsonPayloadString = labInvestigationAction.getJsonPayload();
+
+                try {
+                    JSONObject jsonPayload = new JSONObject(jsonPayloadString);
+                    JSONObject global = jsonPayload.getJSONObject(GLOBAL);
+                    global.put("currentPregnancyStatus", currentPregnancyStatus);
+                    global.put("typeOfAssault", typeOfAssault);
+                    global.put("hivStatus", hivStatus);
+                    labInvestigationAction.setJsonPayload(jsonPayload.toString());
+                } catch (Exception e) {
+                    Timber.e(e);
+                }
+
+            }
+
+
             if (actionList.get(mContext.getString(R.string.gbv_provide_treatment_title)) != null) {
                 BaseGbvVisitAction provideTreatmentAction = actionList.get(mContext.getString(R.string.gbv_provide_treatment_title));
                 String jsonPayloadString = provideTreatmentAction.getJsonPayload();

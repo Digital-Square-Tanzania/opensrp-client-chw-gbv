@@ -20,8 +20,6 @@ import timber.log.Timber;
 public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
-    private String hivTestResults;
-
     private JSONObject jsonForm;
 
 
@@ -30,6 +28,8 @@ public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper 
     private String typeOfAssault;
 
     private String hivStatus;
+
+    private String didViolenceCauseDisability;
 
 
     public LabInvestigationActionHelper(MemberObject memberObject, String currentPregnancyStatus, String typeOfAssault, String hivStatus) {
@@ -76,7 +76,7 @@ public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper 
         try {
             payload = new JSONObject(jsonPayload);
 
-            hivTestResults = JsonFormUtils.getValue(payload, "hiv_test_results");
+            didViolenceCauseDisability = JsonFormUtils.getValue(payload, "did_violence_cause_disability");
 
             processTestResults(JsonFormUtils.getValue(payload, "hepb_test_results"), JsonFormUtils.getValue(payload, "hiv_test_results"));
         } catch (JSONException e) {
@@ -93,7 +93,7 @@ public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper 
 
     @Override
     public BaseGbvVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isNotBlank(hivTestResults)) {
+        if (StringUtils.isNotBlank(didViolenceCauseDisability)) {
             return BaseGbvVisitAction.Status.COMPLETED;
         } else
             return BaseGbvVisitAction.Status.PENDING;

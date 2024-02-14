@@ -1,6 +1,7 @@
 package org.smartregister.chw.gbv.util;
 
 import static org.smartregister.chw.gbv.util.Constants.ENCOUNTER_TYPE;
+import static org.smartregister.client.utils.constants.JsonFormConstants.COUNT;
 
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
@@ -177,18 +178,27 @@ public class JsonFormUtils extends org.smartregister.util.JsonFormUtils {
      * @return value
      */
     public static String getValue(JSONObject jsonObject, String key) {
+        int numberOfSteps = 1;
         try {
-            JSONArray jsonArray = jsonObject.getJSONObject(JsonFormConstants.STEP1).getJSONArray(JsonFormConstants.FIELDS);
-            int x = 0;
-            while (jsonArray.length() > x) {
-                JSONObject jo = jsonArray.getJSONObject(x);
-                if (jo.getString(JsonFormConstants.KEY).equalsIgnoreCase(key) && jo.has(JsonFormConstants.VALUE)) {
-                    return jo.getString(JsonFormConstants.VALUE);
-                }
-                x++;
-            }
-        } catch (Exception e) {
+            numberOfSteps = jsonObject.getInt(COUNT);
+        } catch (JSONException e) {
             Timber.e(e);
+        }
+
+        for (int i = 1; i <= numberOfSteps; i++) {
+            try {
+                JSONArray jsonArray = jsonObject.getJSONObject("step" + i).getJSONArray(JsonFormConstants.FIELDS);
+                int x = 0;
+                while (jsonArray.length() > x) {
+                    JSONObject jo = jsonArray.getJSONObject(x);
+                    if (jo.getString(JsonFormConstants.KEY).equalsIgnoreCase(key) && jo.has(JsonFormConstants.VALUE)) {
+                        return jo.getString(JsonFormConstants.VALUE);
+                    }
+                    x++;
+                }
+            } catch (Exception e) {
+                Timber.e(e);
+            }
         }
         return "";
     }
