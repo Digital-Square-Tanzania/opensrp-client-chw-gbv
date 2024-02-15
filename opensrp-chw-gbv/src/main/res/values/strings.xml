@@ -69,6 +69,6 @@
 
     <string name="gbv_registration">GBV/VAC Registration</string>
     <string name="gbv_screening">GBV/VAC Screening</string>
-    <string name="refer_to_facility">Refer to facility</string>
+    <string name="refer_to_facility">Refer to Health Facility</string>
 
 </resources>

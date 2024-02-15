@@ -1,7 +1,7 @@
 <resources>
     <string name="error_unable_to_start_form">Hitilafu imetokea wakati wa kuanzisha fomu</string>
     <string name="error_unable_to_save_form">Hitilafu imetokea wakati wa kuhifadhi fomu</string>
-    <string name="gbv_register">GBV</string>
+    <string name="gbv_register">Ukatili wa Kijinsia na Ukatili dhidi ya Watoto</string>
     <string name="add_member">Sajili mwanafamilia</string>
     <string name="sort">Panga</string>
     <string name="home">Nyumbani</string>
@@ -10,8 +10,9 @@
     <string name="job_aids">Vitendea kazi</string>
     <string name="saving_dialog_title">Kuhifadhi</string>
     <string name="malaria_followup_visit">Tembeleo la ufuatiliaji</string>
-    <string name="record_gbv">Rekodi ufuatiliaji wa GBV/VAC</string>
-    <string name="return_to_previous_gbv_clients_page">Rudi kwenye wateja wote wa GBV/VAC</string>
+    <string name="record_gbv">Rekodi tembeleo la mnusura wa ukatili wa kijinsia na ukatili dhidi ya watoto</string>
+    <string name="record_gbv_home_visit">Rekodi tembeleo la mnusura wa ukatili wa kijinsia na ukatili dhidi ya watoto</string>
+    <string name="return_to_previous_gbv_clients_page">Rudi kwenye manusura wote wa Ukatili wa kijinsia na Ukatili dhidi ya watoto</string>
     <string name="last_visit_40_days_ago">Tembeleo la mwisho %1$s uliyopita</string>
     <string name="view_gbv_followup_history">Angalia historia ya huduma</string>
     <string name="gbv_followup_history">Historia ya huduma</string>
@@ -25,9 +26,9 @@
     <string name="vaccine_service_upcoming"><![CDATA[%1$s <font color=#7f7f7f>inakaribia (%2$s)</font></b>]]></string>
     <string name="vaccine_service_overdue"><![CDATA[%1$s <font color=#f04646>muda umepita (%2$s)</font></b>]]></string>
     <string name="vaccine_service_due"><![CDATA[%1$s <font color=#000000>imefika (%2$s)</font></b>]]></string>
-    <string name="call_gbv_client">Mteja wa Malaria</string>
+    <string name="call_gbv_client">Manusura wa Ukatili wa kijinsia na Ukatili dhidi ya watoto</string>
     <string name="head_of_family">Mkuu wa kaya</string>
-    <string name="gbv_client">Mteja wa malaria</string>
+    <string name="gbv_client">Manusura wa Ukatili wa kijinsia na Ukatili dhidi ya watoto</string>
     <string name="copy_to_clipboard">Nakili namba ya simu</string>
     <string name="copied_phone_number">Namba ya simu imenakiliwa</string>
     <string name="call">Piga simu</string>
@@ -46,5 +47,8 @@
     <string name="edit">HARIRI</string>
     <string name="male">Me</string>
     <string name="female">Ke</string>
-    <string name="refer_to_facility">Rufaa kwenda kituo cha kutolea huduma</string>
+    <string name="gbv_visit">Tembeleo la manusura wa Ukatili wa kijinsia na Ukatili dhidi ya watoto</string>
+    <string name="gbv_registration">Usajili wa manusura wa Ukatili wa kijinsia na ukatili dhidi ya watoto</string>
+    <string name="gbv_screening">Tathmini ya ukatili wa kijinsia na ukatili dhidi ya watoto</string>
+    <string name="refer_to_facility">Rufaa kwenda kituo cha Afya kutolea huduma</string>
 </resources>
