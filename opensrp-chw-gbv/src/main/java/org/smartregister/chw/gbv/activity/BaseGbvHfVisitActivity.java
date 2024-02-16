@@ -179,8 +179,12 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
 
 
         for (Map.Entry<String, BaseGbvVisitAction> entry : map.entrySet()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                actionList.putIfAbsent(entry.getKey(), entry.getValue());
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    actionList.putIfAbsent(entry.getKey(), entry.getValue());
+                }
+            } catch (Exception e) {
+                Timber.e(e);
             }
         }
         if (mAdapter != null) {
