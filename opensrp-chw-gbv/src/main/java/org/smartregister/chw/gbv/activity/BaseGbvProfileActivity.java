@@ -57,11 +57,12 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM", Locale.getDefault());
     protected TextView textViewVisitDone;
     protected RelativeLayout visitDone;
-    protected LinearLayout recordVisits;
     protected TextView textViewVisitDoneEdit;
 
     private ProgressBar progressBar;
     protected BaseGbvFloatingMenu baseGbvFloatingMenu;
+
+    protected TextView manualProcessVisit;
 
     public static void startProfileActivity(Activity activity, String baseEntityId) {
         Intent intent = new Intent(activity, BaseGbvProfileActivity.class);
@@ -100,12 +101,16 @@ public class BaseGbvProfileActivity extends BaseProfileActivity implements GbvPr
         textViewVisitDone = findViewById(R.id.textview_visit_done);
         visitStatus = findViewById(R.id.record_visit_not_done_bar);
         visitDone = findViewById(R.id.visit_done_bar);
-        recordVisits = findViewById(R.id.record_visits);
         progressBar = findViewById(R.id.progress_bar);
         textViewVisitDoneEdit = findViewById(R.id.textview_edit);
         textViewRecordGbv = findViewById(R.id.textview_record_gbv);
         textViewUndo = findViewById(R.id.textview_undo);
         imageView = findViewById(R.id.imageview_profile);
+        manualProcessVisit = findViewById(R.id.textview_manual_process);
+
+        textViewVisitDoneEdit.setOnClickListener(this);
+        textViewVisitDoneEdit.setVisibility(View.GONE);
+
         textViewVisitDoneEdit.setOnClickListener(this);
         rlLastVisit.setOnClickListener(this);
         textViewRecordGbv.setOnClickListener(this);

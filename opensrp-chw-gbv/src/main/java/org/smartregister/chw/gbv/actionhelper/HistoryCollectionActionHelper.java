@@ -20,8 +20,6 @@ import timber.log.Timber;
 public abstract class HistoryCollectionActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
-    private String numberOfWitnesses;
-
     private String currentPregnancyStatus;
 
     private String typeOfAssault;
@@ -68,7 +66,6 @@ public abstract class HistoryCollectionActionHelper extends GbvVisitActionHelper
         JSONObject payload;
         try {
             payload = new JSONObject(jsonPayload);
-            numberOfWitnesses = JsonFormUtils.getValue(payload, "no_of_witnesses");
             currentPregnancyStatus = JsonFormUtils.getValue(payload, "current_pregnancy_status");
             typeOfAssault = JsonFormUtils.getValue(payload, "type_of_assault");
             hivStatus = JsonFormUtils.getValue(payload, "hiv_status");
@@ -87,7 +84,7 @@ public abstract class HistoryCollectionActionHelper extends GbvVisitActionHelper
 
     @Override
     public BaseGbvVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isNotBlank(numberOfWitnesses)) {
+        if (StringUtils.isNotBlank(hivStatus)) {
             return BaseGbvVisitAction.Status.COMPLETED;
         } else
             return BaseGbvVisitAction.Status.PENDING;

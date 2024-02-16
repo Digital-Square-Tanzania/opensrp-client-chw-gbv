@@ -165,7 +165,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_consent_action_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -175,7 +175,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_consent_followup_action_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FOLLOWUP_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_CONSENT_FOLLOWUP_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -185,7 +185,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_history_collection_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_HISTORY_COLLECTION_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_HISTORY_COLLECTION_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -195,7 +195,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_medical_examination_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_MEDICAL_EXAMINATION_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_MEDICAL_EXAMINATION_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -205,7 +205,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_physical_examination_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_PHYSICAL_EXAMINATION_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_PHYSICAL_EXAMINATION_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -215,7 +215,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_forensic_examination_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_FORENSIC_EXAMINATION_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_FORENSIC_EXAMINATION_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -226,7 +226,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_lab_investigation_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_LAB_INVESTIGATION_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_LAB_INVESTIGATION_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -236,7 +236,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_provide_treatment_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_PROVIDE_TREATMENT_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_PROVIDE_TREATMENT_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -246,7 +246,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_education_and_counselling_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_EDUCATION_AND_COUNSELLING_FORM).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_EDUCATION_AND_COUNSELLING_FORM).build();
 
         actionList.put(actionName, action);
     }
@@ -256,7 +256,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_safety_plan_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_SAFETY_PLAN).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_SAFETY_PLAN).build();
 
         if (memberObject.getAge() > 7) {
             actionList.put(actionName, action);
@@ -268,7 +268,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_linkage_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_REFERRAL_AND_LINKAGE).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_REFERRAL_AND_LINKAGE).build();
 
         actionList.put(actionName, action);
     }
@@ -278,7 +278,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         String actionName = mContext.getString(R.string.gbv_next_appointment_date_title);
 
-        BaseGbvVisitAction action = getBuilder(actionName).withOptional(false).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_NEXT_APPOINTMENT_DATE).build();
+        BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_NEXT_APPOINTMENT_DATE).build();
 
         actionList.put(actionName, action);
     }
@@ -500,6 +500,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                 actionList.remove(mContext.getString(R.string.gbv_physical_examination_title));
                 actionList.remove(mContext.getString(R.string.gbv_forensic_examination_title));
                 actionList.remove(mContext.getString(R.string.gbv_lab_investigation_title));
+                actionList.remove(mContext.getString(R.string.gbv_provide_treatment_title));
                 actionList.remove(mContext.getString(R.string.gbv_education_and_counselling_title));
                 actionList.remove(mContext.getString(R.string.gbv_safety_plan_title));
                 actionList.remove(mContext.getString(R.string.gbv_linkage_title));
@@ -523,7 +524,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
                 } catch (BaseGbvVisitAction.ValidationException e) {
                     Timber.e(e);
                 }
-            } else {
+            } else if (clientConsent.equalsIgnoreCase("yes")) {
                 actionList.remove(mContext.getString(R.string.gbv_consent_followup_action_title));
                 try {
                     createHistoryCollectionAction(memberObject, details);
