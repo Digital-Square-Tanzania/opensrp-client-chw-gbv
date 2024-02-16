@@ -1,6 +1,8 @@
 package org.smartregister.chw.gbv.util;
 
 public interface Constants {
+    enum SaveType {SUBMIT_AND_CLOSE, AUTO_SUBMIT}
+
 
     int REQUEST_CODE_GET_JSON = 2244;
 

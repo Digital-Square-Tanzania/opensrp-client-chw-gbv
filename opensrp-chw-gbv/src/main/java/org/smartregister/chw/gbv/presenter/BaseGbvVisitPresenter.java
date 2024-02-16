@@ -5,6 +5,7 @@ import org.smartregister.chw.gbv.R;
 import org.smartregister.chw.gbv.contract.BaseGbvVisitContract;
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
+import org.smartregister.chw.gbv.util.Constants;
 import org.smartregister.chw.gbv.util.JsonFormUtils;
 import org.smartregister.util.FormUtils;
 
@@ -51,10 +52,10 @@ public class BaseGbvVisitPresenter implements BaseGbvVisitContract.Presenter, Ba
     }
 
     @Override
-    public void submitVisit() {
+    public void submitVisit(Constants.SaveType saveType) {
         if (view.get() != null) {
             view.get().displayProgressBar(true);
-            interactor.submitVisit(view.get().getEditMode(), memberObject.getBaseEntityId(), view.get().getBaseGbvVisitActions(), this);
+            interactor.submitVisit(view.get().getEditMode(), memberObject.getBaseEntityId(), view.get().getBaseGbvVisitActions(), this, saveType);
         }
     }
 
@@ -85,11 +86,13 @@ public class BaseGbvVisitPresenter implements BaseGbvVisitContract.Presenter, Ba
     }
 
     @Override
-    public void onSubmitted(boolean successful) {
+    public void onSubmitted(boolean successful, Constants.SaveType saveType) {
         if (view.get() != null) {
             view.get().displayProgressBar(false);
             if (successful) {
-                view.get().submittedAndClose();
+                if (saveType == Constants.SaveType.SUBMIT_AND_CLOSE) {
+                    view.get().submittedAndClose();
+                }
             } else {
                 view.get().displayToast(view.get().getContext().getString(R.string.error_unable_save_home_visit));
             }

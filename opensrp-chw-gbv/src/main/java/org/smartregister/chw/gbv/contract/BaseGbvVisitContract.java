@@ -7,6 +7,7 @@ import com.vijay.jsonwizard.domain.Form;
 import org.json.JSONObject;
 import org.smartregister.chw.gbv.domain.MemberObject;
 import org.smartregister.chw.gbv.model.BaseGbvVisitAction;
+import org.smartregister.chw.gbv.util.Constants;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ public interface BaseGbvVisitContract {
          * Save the received data into the events table
          * Start aggregation of all events and persist results into the events table
          */
-        void submitVisit();
+        void submitVisit(Constants.SaveType saveType);
 
         void initializeActions(LinkedHashMap<String, BaseGbvVisitAction> map);
 
@@ -84,7 +85,7 @@ public interface BaseGbvVisitContract {
          */
         void initialize();
 
-        void submitVisit();
+        void submitVisit(Constants.SaveType saveType);
 
         void reloadMemberDetails(String memberID);
     }
@@ -105,7 +106,7 @@ public interface BaseGbvVisitContract {
 
         void calculateActions(View view, MemberObject memberObject, InteractorCallBack callBack);
 
-        void submitVisit(boolean editMode, String memberID, Map<String, BaseGbvVisitAction> map, InteractorCallBack callBack);
+        void submitVisit(boolean editMode, String memberID, Map<String, BaseGbvVisitAction> map, InteractorCallBack callBack, Constants.SaveType saveType);
     }
 
     interface InteractorCallBack {
@@ -116,6 +117,6 @@ public interface BaseGbvVisitContract {
 
         void preloadActions(LinkedHashMap<String, BaseGbvVisitAction> map);
 
-        void onSubmitted(boolean successful);
+        void onSubmitted(boolean successful, Constants.SaveType saveType);
     }
 }

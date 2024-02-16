@@ -226,7 +226,7 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
         if (v.getId() == R.id.close) {
             displayExitDialog(() -> close());
         } else if (v.getId() == R.id.customFontTextViewSubmit) {
-            submitVisit();
+            submitVisit(Constants.SaveType.SUBMIT_AND_CLOSE);
         }
     }
 
@@ -345,8 +345,8 @@ public class BaseGbvHfVisitActivity extends SecuredActivity implements BaseGbvVi
     }
 
     @Override
-    public void submitVisit() {
-        getPresenter().submitVisit();
+    public void submitVisit(Constants.SaveType saveType) {
+        getPresenter().submitVisit(saveType);
     }
 
     @Override

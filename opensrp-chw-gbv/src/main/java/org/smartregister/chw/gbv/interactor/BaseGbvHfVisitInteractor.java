@@ -289,7 +289,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     @Override
-    public void submitVisit(final boolean editMode, final String memberID, final Map<String, BaseGbvVisitAction> map, final BaseGbvVisitContract.InteractorCallBack callBack) {
+    public void submitVisit(final boolean editMode, final String memberID, final Map<String, BaseGbvVisitAction> map, final BaseGbvVisitContract.InteractorCallBack callBack, Constants.SaveType saveType) {
         final Runnable runnable = () -> {
             boolean result = true;
             try {
@@ -300,7 +300,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
             }
 
             final boolean finalResult = result;
-            appExecutors.mainThread().execute(() -> callBack.onSubmitted(finalResult));
+            appExecutors.mainThread().execute(() -> callBack.onSubmitted(finalResult, saveType));
         };
 
         appExecutors.diskIO().execute(runnable);
