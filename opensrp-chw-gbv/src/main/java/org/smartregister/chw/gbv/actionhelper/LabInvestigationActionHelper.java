@@ -29,7 +29,13 @@ public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper 
 
     private String hivStatus;
 
-    private String didViolenceCauseDisability;
+    private String uptTestResults;
+
+    private String hivTestResults;
+
+    private String stiTestResults;
+
+    private String hepbTestResults;
 
 
     public LabInvestigationActionHelper(MemberObject memberObject, String currentPregnancyStatus, String typeOfAssault, String hivStatus) {
@@ -76,7 +82,10 @@ public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper 
         try {
             payload = new JSONObject(jsonPayload);
 
-            didViolenceCauseDisability = JsonFormUtils.getValue(payload, "did_violence_cause_disability");
+            uptTestResults = JsonFormUtils.getValue(payload, "upt_test_results");
+            hivTestResults = JsonFormUtils.getValue(payload, "hiv_test_results");
+            stiTestResults = JsonFormUtils.getValue(payload, "sti_test_results");
+            hepbTestResults = JsonFormUtils.getValue(payload, "hepb_test_results");
 
             processTestResults(JsonFormUtils.getValue(payload, "hepb_test_results"), JsonFormUtils.getValue(payload, "hiv_test_results"));
         } catch (JSONException e) {
@@ -93,7 +102,7 @@ public abstract class LabInvestigationActionHelper extends GbvVisitActionHelper 
 
     @Override
     public BaseGbvVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isNotBlank(didViolenceCauseDisability)) {
+        if (StringUtils.isNotBlank(uptTestResults) || StringUtils.isNotBlank(hivTestResults) || StringUtils.isNotBlank(stiTestResults) || StringUtils.isNotBlank(hepbTestResults)) {
             return BaseGbvVisitAction.Status.COMPLETED;
         } else
             return BaseGbvVisitAction.Status.PENDING;

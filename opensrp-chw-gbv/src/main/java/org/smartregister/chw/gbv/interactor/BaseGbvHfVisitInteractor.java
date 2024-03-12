@@ -258,7 +258,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_SAFETY_PLAN).build();
 
-        if (memberObject.getAge() > 7) {
+        if (memberObject.getAge() >= 10) {
             actionList.put(actionName, action);
         }
     }
@@ -598,7 +598,6 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
             } else {
                 actionList.remove(mContext.getString(R.string.gbv_lab_investigation_title));
             }
-
             appExecutors.mainThread().execute(() -> callBack.preloadActions(actionList));
         }
     }
