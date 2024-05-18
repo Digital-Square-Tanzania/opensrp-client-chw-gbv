@@ -20,7 +20,7 @@ import timber.log.Timber;
 public class SafetyPlanActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
-    private String signsOfPartnerBehaviourThatAlertForPossibilityOfViolence;
+    private String hasSafetyPlanBeenDone;
 
     private JSONObject jsonForm;
 
@@ -62,7 +62,7 @@ public class SafetyPlanActionHelper extends GbvVisitActionHelper {
         JSONObject payload;
         try {
             payload = new JSONObject(jsonPayload);
-            signsOfPartnerBehaviourThatAlertForPossibilityOfViolence = JsonFormUtils.getValue(payload, "signs_of_partner_behaviour_that_alert_for_possibility_of_violence");
+            hasSafetyPlanBeenDone = JsonFormUtils.getValue(payload, "has_safety_plan_been_done");
         } catch (JSONException e) {
             Timber.d(e);
         }
@@ -75,7 +75,7 @@ public class SafetyPlanActionHelper extends GbvVisitActionHelper {
 
     @Override
     public BaseGbvVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isNotBlank(signsOfPartnerBehaviourThatAlertForPossibilityOfViolence)) {
+        if (StringUtils.isNotBlank(hasSafetyPlanBeenDone)) {
             return BaseGbvVisitAction.Status.COMPLETED;
         } else
             return BaseGbvVisitAction.Status.PENDING;

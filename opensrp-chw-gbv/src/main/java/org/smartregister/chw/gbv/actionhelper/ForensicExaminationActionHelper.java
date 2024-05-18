@@ -20,7 +20,7 @@ import timber.log.Timber;
 public abstract class ForensicExaminationActionHelper extends GbvVisitActionHelper {
     private MemberObject memberObject;
 
-    private String bloodSpecimen;
+    private String forensicExaminationDone;
 
     private String doesTheClientNeedLabInvestigation;
 
@@ -64,7 +64,7 @@ public abstract class ForensicExaminationActionHelper extends GbvVisitActionHelp
         JSONObject payload;
         try {
             payload = new JSONObject(jsonPayload);
-            bloodSpecimen = JsonFormUtils.getValue(payload, "blood_specimen");
+            forensicExaminationDone = JsonFormUtils.getValue(payload, "forensic_examination_done");
             doesTheClientNeedLabInvestigation = JsonFormUtils.getValue(payload, "does_the_client_need_lab_investigation");
         } catch (JSONException e) {
             Timber.d(e);
@@ -82,7 +82,7 @@ public abstract class ForensicExaminationActionHelper extends GbvVisitActionHelp
 
     @Override
     public BaseGbvVisitAction.Status evaluateStatusOnPayload() {
-        if (StringUtils.isNotBlank(bloodSpecimen)) {
+        if (StringUtils.isNotBlank(forensicExaminationDone)) {
             return BaseGbvVisitAction.Status.COMPLETED;
         } else
             return BaseGbvVisitAction.Status.PENDING;
