@@ -3,6 +3,10 @@ package org.smartregister.chw.gbv.util;
 import static org.smartregister.chw.gbv.util.Constants.ENCOUNTER_TYPE;
 import static org.smartregister.client.utils.constants.JsonFormConstants.COUNT;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.vijay.jsonwizard.constants.JsonFormConstants;
 
 import org.apache.commons.lang3.StringUtils;
@@ -266,6 +270,7 @@ public class JsonFormUtils extends org.smartregister.util.JsonFormUtils {
         return "";
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static void populateForm(@Nullable JSONObject jsonObject, Map<String, @Nullable List<VisitDetail>> details) {
         if (details == null || jsonObject == null) return;
         try {
@@ -286,6 +291,35 @@ public class JsonFormUtils extends org.smartregister.util.JsonFormUtils {
                     if (detailList != null) {
                         if (jo.getString(JsonFormConstants.TYPE).equalsIgnoreCase(JsonFormConstants.CHECK_BOX)) {
                             jo.put(JsonFormConstants.VALUE, getValue(jo, detailList));
+                        } else if (jo.getString(JsonFormConstants.TYPE).equalsIgnoreCase(JsonFormConstants.REPEATING_GROUP)) {
+                            JSONArray repeatingGroupValues = new JSONArray(getValue(jo, detailList).getString(0));
+                            jo.put(JsonFormConstants.VALUE, repeatingGroupValues);
+
+                            for (int i = 0; i < repeatingGroupValues.length(); i++) {
+                                JSONObject repeatingGroupValue = repeatingGroupValues.getJSONObject(i);
+                                String mKey = repeatingGroupValue.getString(JsonFormConstants.KEY);
+
+                                List<VisitDetail> detail = findKeyAndGetValue(details, mKey);
+                                if (detail != null) {
+                                    repeatingGroupValue.put(JsonFormConstants.KEY, detail.get(0).getVisitKey());
+                                    if (repeatingGroupValue.getString(JsonFormConstants.TYPE).equalsIgnoreCase(JsonFormConstants.CHECK_BOX)) {
+                                        jo.put(JsonFormConstants.VALUE, getValue(repeatingGroupValue, detail));
+                                    } else {
+                                        repeatingGroupValue.put(JsonFormConstants.VALUE, getValue(detail.get(0)));
+                                    }
+                                    jsonArray.put(repeatingGroupValue);
+                                }
+                            }
+
+                            List<VisitDetail> detail = findKeyAndGetValue(details, jo.getString(JsonFormConstants.KEY) + "_count");
+                            if (detail != null) {
+                                JSONObject repeatingGroupValue = new JSONObject();
+                                repeatingGroupValue.put(JsonFormConstants.KEY, detail.get(0).getVisitKey());
+                                repeatingGroupValue.put(JsonFormConstants.VALUE, getValue(detail.get(0)));
+                                jsonArray.put(repeatingGroupValue);
+                            }
+
+
                         } else {
                             String value = getValue(detailList.get(0));
                             if (key.contains("date")) {
@@ -304,6 +338,15 @@ public class JsonFormUtils extends org.smartregister.util.JsonFormUtils {
         } catch (Exception e) {
             Timber.e(e);
         }
+    }
+
+    public static List<VisitDetail> findKeyAndGetValue(Map<String, List<VisitDetail>> details, String searchText) {
+        for (Map.Entry<String, List<VisitDetail>> entry : details.entrySet()) {
+            if (entry.getKey().contains(searchText)) {
+                return entry.getValue();
+            }
+        }
+        return null; // or Collections.emptyList() if you prefer to return an empty list instead of null
     }
 
     public static String getValue(VisitDetail visitDetail) {
