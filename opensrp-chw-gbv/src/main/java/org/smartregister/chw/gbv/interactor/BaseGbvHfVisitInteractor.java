@@ -289,11 +289,12 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     @Override
-    public void submitVisit(final boolean editMode, final String memberID, final Map<String, BaseGbvVisitAction> map, final BaseGbvVisitContract.InteractorCallBack callBack, Constants.SaveType saveType) {
+    public void submitVisit(BaseGbvVisitContract.View view, final String memberID, final Map<String, BaseGbvVisitAction> map, final BaseGbvVisitContract.InteractorCallBack callBack, Constants.SaveType saveType) {
         final Runnable runnable = () -> {
             boolean result = true;
             try {
-                submitVisit(editMode, memberID, map, "");
+                submitVisit(view.getEditMode(), memberID, map, "");
+                view.setEditMode(true);
             } catch (Exception e) {
                 Timber.e(e);
                 result = false;

@@ -54,6 +54,8 @@ public interface BaseGbvVisitContract {
 
         Boolean getEditMode();
 
+        void setEditMode(boolean editMode);
+
         void onMemberDetailsReloaded(MemberObject memberObject);
     }
 
@@ -106,7 +108,7 @@ public interface BaseGbvVisitContract {
 
         void calculateActions(View view, MemberObject memberObject, InteractorCallBack callBack);
 
-        void submitVisit(boolean editMode, String memberID, Map<String, BaseGbvVisitAction> map, InteractorCallBack callBack, Constants.SaveType saveType);
+        void submitVisit(View view, String memberID, Map<String, BaseGbvVisitAction> map, InteractorCallBack callBack, Constants.SaveType saveType);
     }
 
     interface InteractorCallBack {
