@@ -24,9 +24,12 @@ public class ProvideTreatmentActionHelper extends GbvVisitActionHelper {
 
     private JSONObject jsonForm;
 
+    private String typeOfAssault;
 
-    public ProvideTreatmentActionHelper(MemberObject memberObject) {
+
+    public ProvideTreatmentActionHelper(MemberObject memberObject, String typeOfAssault) {
         this.memberObject = memberObject;
+        this.typeOfAssault = typeOfAssault;
     }
 
     @Override
@@ -50,6 +53,7 @@ public class ProvideTreatmentActionHelper extends GbvVisitActionHelper {
             JSONObject global = jsonForm.getJSONObject(GLOBAL);
             global.put("age", memberObject.getAge());
             global.put("gender", memberObject.getGender());
+            global.put("typeOfAssault", typeOfAssault);
             return jsonForm.toString();
         } catch (JSONException e) {
             Timber.e(e);

@@ -232,7 +232,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
     }
 
     protected void createProvideTreatmentAction(MemberObject memberObject, Map<String, List<VisitDetail>> details) throws BaseGbvVisitAction.ValidationException {
-        GbvVisitActionHelper actionHelper = new ProvideTreatmentActionHelper(memberObject);
+        GbvVisitActionHelper actionHelper = new ProvideTreatmentActionHelper(memberObject,mTypeOfAssault);
 
         String actionName = mContext.getString(R.string.gbv_provide_treatment_title);
 
