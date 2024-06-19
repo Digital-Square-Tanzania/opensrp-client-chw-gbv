@@ -258,7 +258,7 @@ public class BaseGbvHfVisitInteractor implements BaseGbvVisitContract.Interactor
 
         BaseGbvVisitAction action = getBuilder(actionName).withOptional(true).withDetails(details).withHelper(actionHelper).withFormName(Constants.FORMS.GBV_SAFETY_PLAN).build();
 
-        if (memberObject.getAge() >= 10) {
+        if (memberObject.getAge() >= 5) {
             actionList.put(actionName, action);
         }
     }
