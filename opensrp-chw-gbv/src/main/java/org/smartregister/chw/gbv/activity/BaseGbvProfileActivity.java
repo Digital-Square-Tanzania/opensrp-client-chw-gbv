@@ -14,12 +14,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.Nullable;
 import org.smartregister.chw.gbv.R;
 import org.smartregister.chw.gbv.contract.GbvProfileContract;
 import org.smartregister.chw.gbv.custom_views.BaseGbvFloatingMenu;
