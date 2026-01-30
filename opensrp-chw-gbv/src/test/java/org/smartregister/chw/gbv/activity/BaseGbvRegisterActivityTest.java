@@ -3,16 +3,28 @@ package org.smartregister.chw.gbv.activity;
 import android.content.Intent;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.powermock.reflect.Whitebox;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 28)
 public class BaseGbvRegisterActivityTest {
     @Mock
     public Intent data;
-    @Mock
-    private BaseGbvRegisterActivity baseTestRegisterActivity = new BaseGbvRegisterActivity();
+    private BaseGbvRegisterActivity baseTestRegisterActivity;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        baseTestRegisterActivity = new BaseGbvRegisterActivity();
+    }
 
     @Test
     public void assertNotNull() {
