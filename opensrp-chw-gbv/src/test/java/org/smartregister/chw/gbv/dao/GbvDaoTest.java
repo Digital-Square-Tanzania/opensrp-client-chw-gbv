@@ -1,6 +1,6 @@
 package org.smartregister.chw.gbv.dao;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.junit.Assert;
 import org.junit.Before;
